@@ -50,6 +50,3 @@ class Message(model.Model):
     created=model.DateTimeProperty(auto_now_add=True)
     updated=model.DateTimeProperty(auto_now=True)
 
-class Trail(model.Model):
-    user=model.StructuredProperty(User)
-        

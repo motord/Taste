@@ -1,7 +1,11 @@
-application: k2mint
+application: k2clipper
 version: tasteofhome
 runtime: python
 api_version: 1
+
+builtins:
+- datastore_admin: on
+- appstats: on
 
 handlers:
 - url: /favicon.ico

@@ -26,7 +26,7 @@ view_groups = [
   ViewGroup(
     Rule('/', endpoint='index', view='tasteofhome.views.index'),
     Rule('/forum', endpoint='forum', view='tasteofhome.views.forum'),
-    Rule('/populate', endpoint='populate', view='tasteofhome.views.populate'),
+    Rule('/data/tags', endpoint='data.tags', view='tasteofhome.data.tags'),
   )
 ]
 
