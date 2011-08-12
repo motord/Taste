@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div id="tag">
+    <h1><a href="/tag/{{ tag.key() }}">{{ tag.name }}</a></h1>
+    <div id="actions">
+
+    </div>
+</div>
+<div id="tags">
+{% for tag in tags %}
+    <a href="/tag/{{ tag.key() }}">{{ tag.name }}</a>
+{% endfor %}
+</div>
+<div id="courses">
+
+</div>
+<div id="messages">
+    
+</div>
+{{ message }}
+</body>
+</html>

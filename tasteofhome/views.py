@@ -27,13 +27,18 @@ from kay.auth.decorators import login_required
 
 from kay.utils import render_to_response
 from models import Tag
-from ndb import model, key
+from google.appengine.ext import db
 
 # Create your views here.
 
 def index(request):
-  tags=Tag.query(Tag.depth==1)
+  tags=Tag.gql("WHERE depth = :1", 1)
   return render_to_response('tasteofhome/index.html', {'tags': tags})
+
+def tag(request, key):
+  tag=db.get(key)
+  tags=Tag.gql("WHERE ANCESTOR IS :1 AND depth = :2", tag, tag.depth+1)
+  return render_to_response('tasteofhome/tag.html', {'tag': tag, 'tags': tags})
 
 def forum(request):
   return render_to_response('tasteofhome/forum.html')

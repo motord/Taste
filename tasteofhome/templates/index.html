@@ -6,7 +6,7 @@
 </head>
 <body>
 {% for tag in tags %}
-    <a href="{{ tag.key.urlsafe() }}">{{ tag.name }}</a>
+    <a href="/tag/{{ tag.key() }}">{{ tag.name }}</a>
 {% endfor %}
 {{ message }}
 </body>

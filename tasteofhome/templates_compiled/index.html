@@ -10,8 +10,8 @@ def root(context, environment=environment):
     l_tag = missing
     for l_tag in l_tags:
         if 0: yield None
-        yield u'\n    <a href="%s">%s</a>\n' % (
-            escape(context.call(environment.getattr(environment.getattr(l_tag, 'key'), 'urlsafe'))), 
+        yield u'\n    <a href="/tag/%s">%s</a>\n' % (
+            escape(context.call(environment.getattr(l_tag, 'key'))), 
             escape(environment.getattr(l_tag, 'name')), 
         )
     l_tag = missing
