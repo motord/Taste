@@ -1,43 +1,40 @@
 # -*- coding: utf-8 -*-
 # tasteofhome.models
 
-from ndb import model
+from google.appengine.ext import db
+from kay.auth.models import DatastoreUser
 
 
 # Create your models here.
-class Course(model.Model):
-    name=model.StringProperty()
-    description=model.StringProperty()
-    avatar=model.BlobProperty()
-    created=model.DateTimeProperty(auto_now_add=True)
-    updated=model.DateTimeProperty(auto_now=True)
+class Course(db.Model):
+    name=db.StringProperty()
+    description=db.StringProperty()
+    avatar=db.BlobProperty()
+    created=db.DateTimeProperty(auto_now_add=True)
+    updated=db.DateTimeProperty(auto_now=True)
 
-class Tag(model.Model):
-    name=model.StringProperty()
-    depth=model.IntegerProperty()
-    courses=model.StructuredProperty(Course, repeated=True)
-    created=model.DateTimeProperty(auto_now_add=True)
-    updated=model.DateTimeProperty(auto_now=True)
+class Tag(db.Model):
+    name=db.StringProperty()
+    depth=db.IntegerProperty()
+    courses=db.ListProperty(db.Key)
+    created=db.DateTimeProperty(auto_now_add=True)
+    updated=db.DateTimeProperty(auto_now=True)
 
-class User(model.Model):
-    username=model.StringProperty()
-    email=model.StringProperty()
-    avatar=model.BlobProperty()
-    mouths=model.StructuredProperty(Course, repeated=True)
-    hands=model.StructuredProperty(Course, repeated=True)
-    created=model.DateTimeProperty(auto_now_add=True)
-    updated=model.DateTimeProperty(auto_now=True)
+class User(DatastoreUser):
+    avatar=db.BlobProperty()
+    tags=db.ListProperty(db.Key)
+    mouths=db.ListProperty(db.Key)
+    hands=db.ListProperty(db.Key)
 
-class Feast(model.Model):
-    schedule=model.DateTimeProperty()
-    tag=model.StructuredProperty(Tag)
-    courses=model.StructuredProperty(Course, repeated=True)
-    users=model.StructuredProperty(User, repeated=True)
-    created=model.DateTimeProperty(auto_now_add=True)
-    updated=model.DateTimeProperty(auto_now=True)
+class Feast(db.Model):
+    schedule=db.DateTimeProperty()
+    tag=db.ReferenceProperty(Tag)
+    courses=db.ListProperty(db.Key)
+    created=db.DateTimeProperty(auto_now_add=True)
+    updated=db.DateTimeProperty(auto_now=True)
 
-class Message(model.Model):
-    message=model.StringProperty()
-    created=model.DateTimeProperty(auto_now_add=True)
-    updated=model.DateTimeProperty(auto_now=True)
+class Message(db.Model):
+    message=db.StringProperty()
+    created=db.DateTimeProperty(auto_now_add=True)
+    updated=db.DateTimeProperty(auto_now=True)
 

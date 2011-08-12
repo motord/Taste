@@ -42,4 +42,12 @@ CONTEXT_PROCESSORS = (
   'kay.context_processors.request',
   'kay.context_processors.url_functions',
   'kay.context_processors.media_url',
+  'kay.auth.context_processors.login_box',
 )
+
+MIDDLEWARE_CLASSES = (
+    'kay.sessions.middleware.SessionMiddleware',
+    'kay.auth.middleware.AuthenticationMiddleware',
+)
+AUTH_USER_BACKEND='kay.auth.backends.datastore.DatastoreBackend'
+AUTH_USER_MODEL = 'tasteofhome.models.User'

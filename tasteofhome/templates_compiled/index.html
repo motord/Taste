@@ -3,6 +3,7 @@ from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, Templa
 name = '/index.html'
 
 def root(context, environment=environment):
+    l_message = context.resolve('message')
     l_tags = context.resolve('tags')
     if 0: yield None
     yield u'<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">\n<html>\n<head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">\n<title>Top Page - tasteofhome</title>\n</head>\n<body>\n'
@@ -14,7 +15,9 @@ def root(context, environment=environment):
             escape(environment.getattr(l_tag, 'name')), 
         )
     l_tag = missing
-    yield u'\n</body>\n</html>'
+    yield u'\n%s\n</body>\n</html>' % (
+        escape(l_message), 
+    )
 
 blocks = {}
-debug_info = '1=8&8=10&9=13&10=17'
+debug_info = '1=9&8=11&9=14&10=18&11=19'
