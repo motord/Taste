@@ -32,7 +32,8 @@ from ndb import model, key
 # Create your views here.
 
 def index(request):
-  return render_to_response('tasteofhome/index.html', {'message': 'Hello'})
+  tags=Tag.query(Tag.depth==1)
+  return render_to_response('tasteofhome/index.html', {'tags': tags})
 
 def forum(request):
   return render_to_response('tasteofhome/forum.html')

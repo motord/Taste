@@ -5,6 +5,8 @@
 <title>Top Page - tasteofhome</title>
 </head>
 <body>
-{{ message }}
+{% for tag in tags %}
+    <a href="{{ tag.key.urlsafe() }}">{{ tag.name }}</a>
+{% endfor %}
 </body>
 </html>

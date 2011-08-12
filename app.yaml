@@ -6,6 +6,7 @@ api_version: 1
 builtins:
 - datastore_admin: on
 - appstats: on
+- deferred: on
 
 handlers:
 - url: /favicon.ico
