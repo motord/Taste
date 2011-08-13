@@ -16,14 +16,27 @@ class Course(db.Model):
 class Tag(db.Model):
     name=db.StringProperty()
     depth=db.IntegerProperty()
-    courses=db.ListProperty(db.Key)
     created=db.DateTimeProperty(auto_now_add=True)
     updated=db.DateTimeProperty(auto_now=True)
 
+class TagCoursesIndex(db.Model):
+    n_courses=db.IntegerProperty()
+    courses=db.ListProperty(db.Key)
+
+class TagMessagesIndex(db.Model):
+    n_messages=db.IntegerProperty()
+    messages=db.ListProperty(db.Key)
+
 class User(DatastoreUser):
     avatar=db.BlobProperty()
+
+class UserTagsIndex(db.Model):
     tags=db.ListProperty(db.Key)
+
+class UserMouthsIndex(db.Model):
     mouths=db.ListProperty(db.Key)
+
+class UserHandsIndex(db.Model):
     hands=db.ListProperty(db.Key)
 
 class Feast(db.Model):

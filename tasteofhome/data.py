@@ -1429,7 +1429,7 @@ def populate_tags():
     key=tag.put()
     db.put([Tag(parent=key, name=t, depth=3) for t in [u'沙坡头区', u'中宁县', u'海原县']])
     key=key.parent()
-    tag=Tag(name=u'新 疆维吾尔自治区', depth=1)
+    tag=Tag(name=u'新疆维吾尔自治区', depth=1)
     key=tag.put()
     tag=Tag(name=u'塔城地区', parent=key, depth=2)
     key=tag.put()
@@ -1556,3 +1556,11 @@ def populate_tags():
     key=tag.put()
     key=key.parent()
 
+def forum(request):
+    deferred.defer(populate_forum)
+    return  render_to_response('tasteofhome/index.html', {'message': 'deferred forum population'})
+
+def populate_forum():
+    tag=Tag(name=u'论坛', depth=99)
+    key=tag.put()
+    db.put([Tag(parent=key, name=t, depth=100) for t in [u'公告', u'提问', u'反馈', u'开发者']])

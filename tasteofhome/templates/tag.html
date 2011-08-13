@@ -1,27 +1,41 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div id="tag">
-    <h1><a href="/tag/{{ tag.key() }}">{{ tag.name }}</a></h1>
-    <div id="actions">
+{% extends "tasteofhome/base.html" %}
+                     {% block content %}
+                         <div id="tag" class="Headings">
+                             <h3 class="parent"><a href="/tag/{{ tag.parent_key() }}">{{ tag.parent().name }}</a></h3>
+                             <h1 class="me"><a href="/tag/{{ tag.key() }}">{{ tag.name }}</a></h1>
+                             <ul id="actions">
+                                 <li><a title="你是否会在此处出没？" href="/#/markmap/{{ tag.key() }}"><img class="map" src="/media/images/pixel.png" /></a></li>
+                                 <li><a title="给这个地点加一道菜" href="/#/addcourse/{{ tag.key() }}"><img class="course" src="/media/images/pixel.png" /></a></li>
 
-    </div>
-</div>
-<div id="tags">
-{% for tag in tags %}
-    <a href="/tag/{{ tag.key() }}">{{ tag.name }}</a>
-{% endfor %}
-</div>
-<div id="courses">
+                             </ul>
+                         </div>
+                         <ul id="tags">
+                             {% for tag in tags %}
+                                 <li>
+                                    <a href="/tag/{{ tag.key() }}">{{ tag.name }}</a>
+                                 </li>
+                             {% endfor %}
+                         </ul>
+                         <ul id="courses">
+                             {% for course in courses %}
+                                 <li>
 
-</div>
-<div id="messages">
-    
-</div>
-{{ message }}
-</body>
-</html>
+                                 </li>
+                             {% endfor %}
+                         </ul>
+                         <ul id="messages">
+                             {% for message in messages %}
+                                 <li>
+
+                                 </li>
+                             {% endfor %}
+                         </ul>
+                     {% endblock %}
+                     {% block panel %}
+                         <div class="Box MapBox">你出没的地点</div>
+                         <div class="Box MouthBox">你想吃的菜</div>
+                         <div class="Box HandBox">你会做的菜</div>
+                     {% endblock %}
+              {% block foot %}
+
+              {% endblock %}

@@ -3,21 +3,35 @@ from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, Templa
 name = '/index.html'
 
 def root(context, environment=environment):
-    l_message = context.resolve('message')
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('tasteofhome/base.html', '/index.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
     l_tags = context.resolve('tags')
     if 0: yield None
-    yield u'<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">\n<html>\n<head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">\n<title>Top Page - tasteofhome</title>\n</head>\n<body>\n'
+    yield u'\n                        <div id="tags" class="Headings">\n                            '
     l_tag = missing
     for l_tag in l_tags:
         if 0: yield None
-        yield u'\n    <a href="/tag/%s">%s</a>\n' % (
+        yield u'\n                                <a href="/tag/%s">%s</a>\n                            ' % (
             escape(context.call(environment.getattr(l_tag, 'key'))), 
             escape(environment.getattr(l_tag, 'name')), 
         )
     l_tag = missing
-    yield u'\n%s\n</body>\n</html>' % (
-        escape(l_message), 
-    )
+    yield u'\n                        </div>\n                     '
 
-blocks = {}
-debug_info = '1=9&8=11&9=14&10=18&11=19'
+def block_foot(context, environment=environment):
+    if 0: yield None
+    yield u'\n\n              '
+
+def block_panel(context, environment=environment):
+    if 0: yield None
+    yield u'\n\n                     '
+
+blocks = {'content': block_content, 'foot': block_foot, 'panel': block_panel}
+debug_info = '1=8&2=14&4=19&5=22&6=26&12=28&9=32'

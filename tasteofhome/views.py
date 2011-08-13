@@ -41,4 +41,5 @@ def tag(request, key):
   return render_to_response('tasteofhome/tag.html', {'tag': tag, 'tags': tags})
 
 def forum(request):
-  return render_to_response('tasteofhome/forum.html')
+  tags=Tag.gql("WHERE depth = :1", 100)
+  return render_to_response('tasteofhome/forum.html', {'tags': tags})

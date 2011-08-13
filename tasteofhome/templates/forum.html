@@ -1,10 +1,83 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Top Page - tasteofhome</title>
-</head>
-<body>
-<script type="text/javascript" src="http://vanilla.samdeha.com/plugins/embedvanilla/remote.js"></script>
-</body>
-</html>
+{% extends "tasteofhome/base.html" %}
+                     {% block content %}
+                         <div class="Tabs DiscussionsTabs">
+                           <ul>
+                              <li class="Active"><a href="/index.php?p=/discussions">All Discussions</a></li>
+                              <li><a href="/index.php?p=/discussions/popular" class="PopularDiscussions">Popular</a></li>
+                              <li><a href="/index.php?p=/discussions/mine" class="MyDiscussions">Mine<span>1</span></a></li>
+                           </ul>
+                         </div>
+                         <ul class="DataList Discussions">
+                           <li class="Item Alt  Mine">
+                               <div class="StatBox AnswersBox"><span>Comments</span>0</div>
+                               <div class="StatBox ViewsBox"><span>Views</span>4</div>
+                               <div class="StatBox FollowsBox"><a href="/index.php?p=/vanilla/discussion/bookmark/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" title="Bookmark"><span>Follows</span>0</a></div>
+                               <div class="StatBox VotesBox"><a href="/index.php?p=/vanilla/discussion/votediscussion/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" title="Vote"><span>Votes</span>0</a></div>
+                               <div class="Options">
+                                   <a href="/index.php?p=/vanilla/discussion/bookmark/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="Bookmark" title="Bookmark">
+                                       <span class="Star"><img src="/media/images/pixel.png" alt="Bookmark" /></span>
+                                   </a>
+                                   <ul class="Options">
+                                     <li>
+                                       <strong>Options</strong>
+                                       <ul>
+                                          <li><a href="/index.php?p=/vanilla/post/editdiscussion/1" class="EditDiscussion">Edit</a></li>
+                                          <li><a href="/index.php?p=/vanilla/discussion/announce/1/Z4J2GFMVJ0YL" class="AnnounceDiscussion">Announce</a></li>
+                                          <li><a href="/index.php?p=/vanilla/discussion/sink/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="SinkDiscussion">Sink</a></li>
+                                          <li><a href="/index.php?p=/vanilla/discussion/close/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="CloseDiscussion">Close</a></li>
+                                          <li><a href="/index.php?p=/vanilla/discussion/delete/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="DeleteDiscussion">Delete</a></li>
+                                       </ul>
+                                     </li>
+                                   </ul>
+                               </div>
+                               <div class="ItemContent Discussion">
+                                    <a href="/index.php?p=/discussion/1/%E7%BB%B5%E9%98%B3%E7%B1%B3%E7%B2%89" class="Title">绵阳米粉</a>            <div class="Meta">
+                                    <span class="CommentCount">1 comment</span>
+                                    <span class="LastCommentBy">Started by <a href="/index.php?p=/profile/1/zhaozhou">zhaozhou</a></span>
+                                    <span class="LastCommentDate">August 6</span>
+                                    <span><a href="/index.php?p=/categories/general" class="Category">General</a></span>
+                                    </div>
+                               </div>
+                           </li>
+                         </ul>
+                     {% endblock %}
+                     {% block panel %}
+                         <a href="/index.php?p=/post/discussion" class="BigButton NewDiscussion">开始新讨论</a>
+                          <div class="Box BoxCategories">
+                               <h4><a href="/index.php?p=/categories/all">Categories</a></h4>
+                               <ul class="PanelInfo PanelCategories">
+                                  <li class="Active"><span><strong><a href="/index.php?p=/discussions">All Discussions</a></strong><span class="Count">1</span></span></li>
+                                  {% for tag in tags %}
+                                  <li class="Depth1"><strong><a href="/index.php?p=/categories/{{ tag.key() }}">{{ tag.name }}</a></strong><span class="Count">0</span></li>
+                                  {% endfor %}
+                               </ul>
+                          </div>
+                          <div id="WhosOnline" class="Box">
+                              <h4>Who's Online (1)</h4>
+                              <ul class="PanelInfo">
+                                  <li>
+                                        <strong >
+                                            <a href="/index.php?p=/profile/1/zhaozhou">zhaozhou</a>
+                                        </strong>
+                                        10:53PM
+                                  </li>
+                              </ul>
+                          </div>
+                     {% endblock %}
+              {% block foot %}
+                    <div id="Definitions" style="display: none;">
+                        <input type="hidden" id="SetClientHour" value="22" />
+                        <input type="hidden" id="AnalyticsTask" value="none" />
+                        <input type="hidden" id="RemoteUrl" value="http://mint.samdeha.com/mint?language=zh&amp;version=1" />
+                        <input type="hidden" id="WhosOnlineFrequency" value="4" />
+                        <input type="hidden" id="TransportError" value="A fatal error occurred while processing the request.&lt;br /&gt;The server returned the following response: %s" />
+                        <input type="hidden" id="TransientKey" value="Z4J2GFMVJ0YL" />
+                        <input type="hidden" id="WebRoot" value="http://vanilla.samdeha.com/" />
+                        <input type="hidden" id="UrlFormat" value="/index.php?p=/{Path}" />
+                        <input type="hidden" id="ConfirmHeading" value="Confirm" />
+                        <input type="hidden" id="ConfirmText" value="Are you sure you want to do that?" />
+                        <input type="hidden" id="Okay" value="Okay" />
+                        <input type="hidden" id="Cancel" value="Cancel" />
+                        <input type="hidden" id="Search" value="Search" />
+                    </div>
+              {% endblock %}
