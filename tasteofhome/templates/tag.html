@@ -1,4 +1,8 @@
 {% extends "tasteofhome/base.html" %}
+        {% block javascript %}
+        <script type="text/javascript" src="/media/js/tag.js?v=2.0.17.10"></script>
+        {% endblock %}
+
                      {% block content %}
                          <div id="tag" class="Headings">
                              <h3 class="parent"><a href="/tag/{{ tag.parent_key() }}">{{ tag.parent().name }}</a></h3>
@@ -31,11 +35,7 @@
                              {% endfor %}
                          </ul>
                      {% endblock %}
-                     {% block panel %}
-                         <div class="Box MapBox">你出没的地点</div>
-                         <div class="Box MouthBox">你想吃的菜</div>
-                         <div class="Box HandBox">你会做的菜</div>
-                     {% endblock %}
+
               {% block foot %}
 
               {% endblock %}

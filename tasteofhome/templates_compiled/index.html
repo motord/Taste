@@ -14,24 +14,24 @@ def root(context, environment=environment):
 def block_content(context, environment=environment):
     l_tags = context.resolve('tags')
     if 0: yield None
-    yield u'\n                        <div id="tags" class="Headings">\n                            '
+    yield u'\n                        <ul id="tags" class="Headings">\n                            '
     l_tag = missing
     for l_tag in l_tags:
         if 0: yield None
-        yield u'\n                                <a href="/tag/%s">%s</a>\n                            ' % (
+        yield u'\n                                <li>\n                                    <a href="/tag/%s">%s</a>\n                                </li>\n                            ' % (
             escape(context.call(environment.getattr(l_tag, 'key'))), 
             escape(environment.getattr(l_tag, 'name')), 
         )
     l_tag = missing
-    yield u'\n                        </div>\n                     '
+    yield u'\n                        </ul>\n                     '
 
 def block_foot(context, environment=environment):
     if 0: yield None
     yield u'\n\n              '
 
-def block_panel(context, environment=environment):
+def block_javascript(context, environment=environment):
     if 0: yield None
-    yield u'\n\n                     '
+    yield u'\n        <script type="text/javascript" src="/media/js/home.js?v=2.0.17.10"></script>\n        '
 
-blocks = {'content': block_content, 'foot': block_foot, 'panel': block_panel}
-debug_info = '1=8&2=14&4=19&5=22&6=26&12=28&9=32'
+blocks = {'content': block_content, 'foot': block_foot, 'javascript': block_javascript}
+debug_info = '1=8&6=14&8=19&10=22&12=26&16=28&2=32'

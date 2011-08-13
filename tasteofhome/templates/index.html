@@ -1,14 +1,18 @@
 {% extends "tasteofhome/base.html" %}
-                     {% block content %}
-                        <div id="tags" class="Headings">
-                            {% for tag in tags %}
-                                <a href="/tag/{{ tag.key() }}">{{ tag.name }}</a>
-                            {% endfor %}
-                        </div>
-                     {% endblock %}
-                     {% block panel %}
+        {% block javascript %}
+        <script type="text/javascript" src="/media/js/home.js?v=2.0.17.10"></script>
+        {% endblock %}
 
+                     {% block content %}
+                        <ul id="tags" class="Headings">
+                            {% for tag in tags %}
+                                <li>
+                                    <a href="/tag/{{ tag.key() }}">{{ tag.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
                      {% endblock %}
+
               {% block foot %}
 
               {% endblock %}

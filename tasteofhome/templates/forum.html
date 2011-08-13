@@ -1,46 +1,53 @@
 {% extends "tasteofhome/base.html" %}
+        {% block javascript %}
+        <script type="text/javascript" src="/media/js/forum.js?v=2.0.17.10"></script>
+        {% endblock %}
+
                      {% block content %}
                          <div class="Tabs DiscussionsTabs">
                            <ul>
-                              <li class="Active"><a href="/index.php?p=/discussions">All Discussions</a></li>
-                              <li><a href="/index.php?p=/discussions/popular" class="PopularDiscussions">Popular</a></li>
-                              <li><a href="/index.php?p=/discussions/mine" class="MyDiscussions">Mine<span>1</span></a></li>
+                              <li class="Active"><a href="#/discussions">所有讨论</a></li>
+                              <li><a href="#/discussions/popular" class="PopularDiscussions">最热</a></li>
+                              <li><a href="#/discussions/mine" class="MyDiscussions">我的讨论<span>1</span></a></li>
                            </ul>
                          </div>
                          <ul class="DataList Discussions">
-                           <li class="Item Alt  Mine">
-                               <div class="StatBox AnswersBox"><span>Comments</span>0</div>
-                               <div class="StatBox ViewsBox"><span>Views</span>4</div>
-                               <div class="StatBox FollowsBox"><a href="/index.php?p=/vanilla/discussion/bookmark/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" title="Bookmark"><span>Follows</span>0</a></div>
-                               <div class="StatBox VotesBox"><a href="/index.php?p=/vanilla/discussion/votediscussion/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" title="Vote"><span>Votes</span>0</a></div>
-                               <div class="Options">
-                                   <a href="/index.php?p=/vanilla/discussion/bookmark/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="Bookmark" title="Bookmark">
-                                       <span class="Star"><img src="/media/images/pixel.png" alt="Bookmark" /></span>
-                                   </a>
-                                   <ul class="Options">
-                                     <li>
-                                       <strong>Options</strong>
-                                       <ul>
-                                          <li><a href="/index.php?p=/vanilla/post/editdiscussion/1" class="EditDiscussion">Edit</a></li>
-                                          <li><a href="/index.php?p=/vanilla/discussion/announce/1/Z4J2GFMVJ0YL" class="AnnounceDiscussion">Announce</a></li>
-                                          <li><a href="/index.php?p=/vanilla/discussion/sink/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="SinkDiscussion">Sink</a></li>
-                                          <li><a href="/index.php?p=/vanilla/discussion/close/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="CloseDiscussion">Close</a></li>
-                                          <li><a href="/index.php?p=/vanilla/discussion/delete/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="DeleteDiscussion">Delete</a></li>
+                            {% for discussion in courses %}
+                               <li class="Item Alt  Mine">
+                                   <div class="StatBox AnswersBox"><span>Comments</span>0</div>
+                                   <div class="StatBox ViewsBox"><span>Views</span>4</div>
+                                   <div class="StatBox FollowsBox"><a href="/index.php?p=/vanilla/discussion/bookmark/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" title="Bookmark"><span>Follows</span>0</a></div>
+                                   <div class="StatBox VotesBox"><a href="/index.php?p=/vanilla/discussion/votediscussion/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" title="Vote"><span>Votes</span>0</a></div>
+                                   <div class="Options">
+                                       <a href="/index.php?p=/vanilla/discussion/bookmark/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="Bookmark" title="Bookmark">
+                                           <span class="Star"><img src="/media/images/pixel.png" alt="Bookmark" /></span>
+                                       </a>
+                                       <ul class="Options">
+                                         <li>
+                                           <strong>Options</strong>
+                                           <ul>
+                                              <li><a href="/index.php?p=/vanilla/post/editdiscussion/1" class="EditDiscussion">Edit</a></li>
+                                              <li><a href="/index.php?p=/vanilla/discussion/announce/1/Z4J2GFMVJ0YL" class="AnnounceDiscussion">Announce</a></li>
+                                              <li><a href="/index.php?p=/vanilla/discussion/sink/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="SinkDiscussion">Sink</a></li>
+                                              <li><a href="/index.php?p=/vanilla/discussion/close/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="CloseDiscussion">Close</a></li>
+                                              <li><a href="/index.php?p=/vanilla/discussion/delete/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="DeleteDiscussion">Delete</a></li>
+                                           </ul>
+                                         </li>
                                        </ul>
-                                     </li>
-                                   </ul>
-                               </div>
-                               <div class="ItemContent Discussion">
-                                    <a href="/index.php?p=/discussion/1/%E7%BB%B5%E9%98%B3%E7%B1%B3%E7%B2%89" class="Title">绵阳米粉</a>            <div class="Meta">
-                                    <span class="CommentCount">1 comment</span>
-                                    <span class="LastCommentBy">Started by <a href="/index.php?p=/profile/1/zhaozhou">zhaozhou</a></span>
-                                    <span class="LastCommentDate">August 6</span>
-                                    <span><a href="/index.php?p=/categories/general" class="Category">General</a></span>
-                                    </div>
-                               </div>
-                           </li>
+                                   </div>
+                                   <div class="ItemContent Discussion">
+                                        <a href="/index.php?p=/discussion/1/%E7%BB%B5%E9%98%B3%E7%B1%B3%E7%B2%89" class="Title">绵阳米粉</a>            <div class="Meta">
+                                        <span class="CommentCount">1 comment</span>
+                                        <span class="LastCommentBy">Started by <a href="/index.php?p=/profile/1/zhaozhou">zhaozhou</a></span>
+                                        <span class="LastCommentDate">August 6</span>
+                                        <span><a href="/index.php?p=/categories/general" class="Category">General</a></span>
+                                        </div>
+                                   </div>
+                               </li>
+                            {% endfor %}
                          </ul>
                      {% endblock %}
+
                      {% block panel %}
                          <a href="/index.php?p=/post/discussion" class="BigButton NewDiscussion">开始新讨论</a>
                           <div class="Box BoxCategories">
@@ -64,6 +71,7 @@
                               </ul>
                           </div>
                      {% endblock %}
+
               {% block foot %}
                     <div id="Definitions" style="display: none;">
                         <input type="hidden" id="SetClientHour" value="22" />
