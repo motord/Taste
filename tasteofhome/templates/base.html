@@ -1,3 +1,4 @@
+{% from "auth/macros.html" import render_loginbox with context %}
 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-ca">
     <head>
@@ -21,6 +22,14 @@
                         <ul id="Menu">
                             <li><a href="/">Home</a></li>
                             <li class=" Highlight"><a href="/forum">论坛</a></li>
+                            {% if request.user.is_anonymous() %}
+                                <li>
+                                    <a href="{{ create_login_url() }}">登陆</a>
+                                </li>
+                            {% else %}
+                                <li><a>{{ reqeust.user }}</a></li>
+                                <li><a href="{{ create_logout_url() }}">登出</a></li>
+                            {% endif %}
                         </ul>
                         <div class="Search">
                             <form method="get" action="/index.php">
@@ -39,56 +48,60 @@
                          {% endblock %}
                      </div>
                      <div id="Panel">
-                         <div class="Box GuestBox">
-                           <h4>你好, 新同学!</h4>
-                           <p>貌似这位同鞋你是新来的吧. 点下面的按钮可以加入我们!</p>
-                           <p>
-                              <a href="/#/signin" class="Button SignInPopup">登陆</a>
-                              <a href="/#/register" class="Button ApplyButton">申请加入</a>
-                              <a href="/#/weibo" title="用微博账号登录"><img src="/media/images/weibo.png" /></a>
-                           </p>
-                         </div>
-                         {% block panel %}
-                             <div class="Box MapBox">
-                                 <h4>你出没的地点</h4>
-                                 <ul class="PanelInfo">
-                                     {% for tag in marked_tags %}
-                                         <li>
-                                             <strong>
-                                                <a href="/tag/{{ tag.key() }}">{{ tag.name }}</a>
-                                             </strong>
-                                             <span class="Count">0</span>
-                                         </li>
-                                     {% endfor %}
-                                 </ul>
+                        {% if request.user.is_anonymous() %}
+                            {{ render_loginbox() }}
+                             <div class="Box GuestBox">
+                               <h4>你好, 新同学!</h4>
+                               <p>貌似这位同鞋你是新来的吧. 点下面的按钮可以加入我们!</p>
+                               <p>
+                                  <a href="/#/signin" class="Button SignInPopup">登陆</a>
+                                  <a href="/#/register" class="Button ApplyButton">申请加入</a>
+                                  <a href="/#/weibo" title="用微博账号登录"><img src="/media/images/weibo.png" /></a>
+                               </p>
                              </div>
-                             <div class="Box MouthBox">
-                                 <h4>你想吃的菜</h4>
-                                 <ul class="PanelInfo">
-                                     {% for course in mouths %}
-                                         <li>
-                                             <strong>
-                                                 <a href="/course/{{ course.key() }}">{{ course.name }}</a>
-                                             </strong>
-                                             <span class="Count">0</span>
-                                         </li>
-                                     {% endfor %}
-                                 </ul>
-                             </div>
-                             <div class="Box HandBox">
-                                 <h4>你会做的菜</h4>
-                                 <ul class="PanelInfo">
-                                     {% for course in hands %}
-                                         <li>
-                                             <strong>
-                                                 <a href="/course/{{ course.key() }}">{{ course.name }}</a>
-                                             </strong>
-                                             <span class="Count">0</span>
-                                         </li>
-                                     {% endfor %}
-                                 </ul>
-                             </div>
-                         {% endblock %}
+                        {% else %}
+                             {% block panel %}
+                                 <div class="Box MapBox">
+                                     <h4>你出没的地点</h4>
+                                     <ul class="PanelInfo">
+                                         {% for tag in marked_tags %}
+                                             <li>
+                                                 <strong>
+                                                    <a href="/tag/{{ tag.key() }}">{{ tag.name }}</a>
+                                                 </strong>
+                                                 <span class="Count">0</span>
+                                             </li>
+                                         {% endfor %}
+                                     </ul>
+                                 </div>
+                                 <div class="Box MouthBox">
+                                     <h4>你想吃的菜</h4>
+                                     <ul class="PanelInfo">
+                                         {% for course in mouths %}
+                                             <li>
+                                                 <strong>
+                                                     <a href="/course/{{ course.key() }}">{{ course.name }}</a>
+                                                 </strong>
+                                                 <span class="Count">0</span>
+                                             </li>
+                                         {% endfor %}
+                                     </ul>
+                                 </div>
+                                 <div class="Box HandBox">
+                                     <h4>你会做的菜</h4>
+                                     <ul class="PanelInfo">
+                                         {% for course in hands %}
+                                             <li>
+                                                 <strong>
+                                                     <a href="/course/{{ course.key() }}">{{ course.name }}</a>
+                                                 </strong>
+                                                 <span class="Count">0</span>
+                                             </li>
+                                         {% endfor %}
+                                     </ul>
+                                 </div>
+                             {% endblock %}
+                        {% endif %}
                      </div>
               </div>
               <div id="Foot">

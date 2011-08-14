@@ -30,6 +30,7 @@ DEFAULT_LANG = 'en'
 
 INSTALLED_APPS = (
     'kay.auth',
+    'yan.auth',
     'tasteofhome',
 )
 
@@ -49,5 +50,6 @@ MIDDLEWARE_CLASSES = (
     'kay.sessions.middleware.SessionMiddleware',
     'kay.auth.middleware.AuthenticationMiddleware',
 )
-AUTH_USER_BACKEND='kay.auth.backends.datastore.DatastoreBackend'
+REVERSE_PROXIED_DOMAIN='jxw.samdeha.com'
+AUTH_USER_BACKEND='yan.auth.backends.datastore.DatastoreBackendWithReverseProxiedDomainHack'
 AUTH_USER_MODEL = 'tasteofhome.models.User'
