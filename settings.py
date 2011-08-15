@@ -49,6 +49,7 @@ CONTEXT_PROCESSORS = (
 MIDDLEWARE_CLASSES = (
     'kay.sessions.middleware.SessionMiddleware',
     'kay.auth.middleware.AuthenticationMiddleware',
+    'kay.ext.appstats.middleware.AppStatsMiddleware',
 )
 REVERSE_PROXIED_DOMAIN='jxw.samdeha.com'
 AUTH_USER_BACKEND='yan.auth.backends.datastore.DatastoreBackendWithReverseProxiedDomainHack'

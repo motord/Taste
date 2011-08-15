@@ -49,27 +49,40 @@
                      {% endblock %}
 
                      {% block panel %}
-                         <a href="/index.php?p=/post/discussion" class="BigButton NewDiscussion">开始新讨论</a>
-                          <div class="Box BoxCategories">
-                               <h4><a href="/index.php?p=/categories/all">Categories</a></h4>
-                               <ul class="PanelInfo PanelCategories">
-                                  <li class="Active"><span><strong><a href="/index.php?p=/discussions">All Discussions</a></strong><span class="Count">1</span></span></li>
-                                  {% for tag in tags %}
-                                  <li class="Depth1"><strong><a href="/index.php?p=/categories/{{ tag.key() }}">{{ tag.name }}</a></strong><span class="Count">0</span></li>
-                                  {% endfor %}
-                               </ul>
-                          </div>
-                          <div id="WhosOnline" class="Box">
-                              <h4>Who's Online (1)</h4>
-                              <ul class="PanelInfo">
-                                  <li>
-                                        <strong >
-                                            <a href="/index.php?p=/profile/1/zhaozhou">zhaozhou</a>
-                                        </strong>
-                                        10:53PM
-                                  </li>
-                              </ul>
-                          </div>
+                         {% if request.user.is_anonymous() %}
+                             {{ render_loginbox() }}
+                              <div class="Box GuestBox">
+                                <h4>你好, 新同学!</h4>
+                                <p>貌似这位同鞋你是新来的吧. 点下面的按钮可以加入我们!</p>
+                                <p>
+                                   <a href="/#/signin" class="Button SignInPopup">登陆</a>
+                                   <a href="/register" class="Button ApplyButton">申请加入</a>
+                                   <a href="/#/weibo" title="用微博账号登录"><img src="/media/images/weibo.png" /></a>
+                                </p>
+                              </div>
+                         {% else %}
+                             <a href="/index.php?p=/post/discussion" class="BigButton NewDiscussion">开始新讨论</a>
+                              <div class="Box BoxCategories">
+                                   <h4><a href="/index.php?p=/categories/all">Categories</a></h4>
+                                   <ul class="PanelInfo PanelCategories">
+                                      <li class="Active"><span><strong><a href="/index.php?p=/discussions">All Discussions</a></strong><span class="Count">1</span></span></li>
+                                      {% for tag in tags %}
+                                      <li class="Depth1"><strong><a href="/index.php?p=/categories/{{ tag.key() }}">{{ tag.name }}</a></strong><span class="Count">0</span></li>
+                                      {% endfor %}
+                                   </ul>
+                              </div>
+                              <div id="WhosOnline" class="Box">
+                                  <h4>Who's Online (1)</h4>
+                                  <ul class="PanelInfo">
+                                      <li>
+                                            <strong >
+                                                <a href="/index.php?p=/profile/1/zhaozhou">zhaozhou</a>
+                                            </strong>
+                                            10:53PM
+                                      </li>
+                                  </ul>
+                              </div>
+                         {% endif %}
                      {% endblock %}
 
               {% block foot %}

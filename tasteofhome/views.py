@@ -43,3 +43,20 @@ def tag(request, key):
 def forum(request):
   tags=Tag.gql("WHERE depth = :1", 100)
   return render_to_response('tasteofhome/forum.html', {'tags': tags})
+
+def register(request):
+  return render_to_response('tasteofhome/register.html')
+
+def course(request, key):
+  course=db.get(key)
+  return render_to_response('tasteofhome/course.html', {'course': course})
+
+def post_course(request, key):
+  tag=db.get(key)
+  return render_to_response('tasteofhome/post_course.html', {'tag': tag})
+
+def post_message(request, key):
+  course=db.get(key)
+  return render_to_response('tasteofhome/post_message.html', {'course': course})
+
+

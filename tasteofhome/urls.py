@@ -26,9 +26,13 @@ view_groups = [
   ViewGroup(
     Rule('/', endpoint='index', view='tasteofhome.views.index'),
     Rule('/forum', endpoint='forum', view='tasteofhome.views.forum'),
+    Rule('/register', endpoint='register', view='tasteofhome.views.register'),
     #Rule('/data/tags', endpoint='data.tags', view='tasteofhome.data.tags'),
     Rule('/data/forum', endpoint='data.forum', view='tasteofhome.data.forum'),
     Rule('/tag/<key>', endpoint='tag', view='tasteofhome.views.tag'),
+    Rule('/course/<key>', endpoint='course', view='tasteofhome.views.course'),
+    Rule('/post/course/<tag>', endpoint='post.course', view='tasteofhome.views.post_course'),
+    Rule('/post/message/<course>', endpoint='post.message', view='tasteofhome.views.post_message'),
   )
 ]
 

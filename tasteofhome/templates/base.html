@@ -14,7 +14,7 @@
         {% block javascript %}
         {% endblock %}
     </head>
-    <body id="vanilla_discussions_index" class="Vanilla Discussions Index ">
+    <body id="vanilla_discussions_index" class="{% block body_class %}Vanilla Discussions Index {% endblock %}">
        <div id="Frame">
               <div id="Head">
                      <div class="Menu">
@@ -48,19 +48,19 @@
                          {% endblock %}
                      </div>
                      <div id="Panel">
-                        {% if request.user.is_anonymous() %}
-                            {{ render_loginbox() }}
-                             <div class="Box GuestBox">
-                               <h4>你好, 新同学!</h4>
-                               <p>貌似这位同鞋你是新来的吧. 点下面的按钮可以加入我们!</p>
-                               <p>
-                                  <a href="/#/signin" class="Button SignInPopup">登陆</a>
-                                  <a href="/#/register" class="Button ApplyButton">申请加入</a>
-                                  <a href="/#/weibo" title="用微博账号登录"><img src="/media/images/weibo.png" /></a>
-                               </p>
-                             </div>
-                        {% else %}
-                             {% block panel %}
+                        {% block panel %}
+                            {% if request.user.is_anonymous() %}
+                                {{ render_loginbox() }}
+                                 <div class="Box GuestBox">
+                                   <h4>你好, 新同学!</h4>
+                                   <p>貌似这位同鞋你是新来的吧. 点下面的按钮可以加入我们!</p>
+                                   <p>
+                                      <a href="/#/signin" class="Button SignInPopup">登陆</a>
+                                      <a href="/register" class="Button ApplyButton">申请加入</a>
+                                      <a href="/#/weibo" title="用微博账号登录"><img src="/media/images/weibo.png" /></a>
+                                   </p>
+                                 </div>
+                            {% else %}
                                  <div class="Box MapBox">
                                      <h4>你出没的地点</h4>
                                      <ul class="PanelInfo">
@@ -100,8 +100,8 @@
                                          {% endfor %}
                                      </ul>
                                  </div>
-                             {% endblock %}
-                        {% endif %}
+                             {% endif %}
+                        {% endblock %}
                      </div>
               </div>
               <div id="Foot">

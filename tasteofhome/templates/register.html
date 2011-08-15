@@ -1,0 +1,46 @@
+{% extends "tasteofhome/base.html" %}
+        {% block javascript %}
+        <script type="text/javascript" src="/media/js/register.js?v=2.0.17.10"></script>
+        {% endblock %}
+                     {% block body_class %} Dashboard Entry register {% endblock %}
+
+                     {% block content %}
+                        <h1>申请加入</h1>
+                        <div class="Box">
+                           <form id="Form_User_Register" method="post" action="/index.php?p=/entry/register">
+                        <div>
+                        <input type="hidden" id="Form_TransientKey" name="User/TransientKey" value="I2VPQFYIWZHC"><input type="hidden" id="Form_hpt" name="hpt" value="" style="display: none;"><input type="hidden" id="Form_ClientHour" name="User/ClientHour" value="22"><input type="hidden" id="Form_Target" name="User/Target" value="/">   <ul>
+                              <li>
+                                 <label for="Form_Email">Email</label>
+                        <input type="text" id="Form_Email" name="User/Email" value="" class="InputBox"><span id="EmailUnavailable" class="Incorrect" style="display: none;">Email 不可用</span>      </li>
+                              <li>
+                                 <label for="Form_Name">用户名</label>
+                        <input type="text" id="Form_Name" name="User/Name" value="" class="InputBox"><span id="NameUnavailable" class="Incorrect" style="display: none;">名字不可用</span>      </li>
+                              <li>
+                                 <label for="Form_Password">密码</label>
+                        <input type="password" id="Form_Password" name="User/Password" value="" class="InputBox">      </li>
+                              <li>
+                                 <label for="Form_PasswordMatch">确认密码</label>
+                        <input type="password" id="Form_PasswordMatch" name="User/PasswordMatch" value="" class="InputBox"><span id="PasswordsDontMatch" class="Incorrect" style="display: none;">密码不匹配</span>      </li>
+                              <li class="Gender">
+                                 <label for="Form_Gender">性别</label>
+                        <label for="Form_Gender" class="RadioLabel"><input type="radio" id="Form_Gender" name="User/Gender" value="m" checked="checked" inlineerrors=""> 男</label><label for="Form_Gender1" class="RadioLabel"><input type="radio" id="Form_Gender1" name="User/Gender" value="f" inlineerrors=""> 女</label>      </li>
+                              <li class="CaptchaInput"><label for="Form_SecurityCheck">Security Check</label>
+                        To use reCAPTCHA you must get an API key from <a href="http://recaptcha.net/api/getkey">http://recaptcha.net/api/getkey</a></li>
+                              <li>
+                                 <label for="Form_TermsOfService" class="CheckBoxLabel"><input type="checkbox" id="Form_TermsOfService" name="User/TermsOfService" value="1"><input type="hidden" name="Checkboxes[]" value="TermsOfService"> 我同意 <a id="TermsOfService" class="Popup" target="terms" href="/index.php?p=/dashboard/home/termsofservice">服务条款</a></label><label for="Form_RememberMe" class="CheckBoxLabel"><input type="checkbox" id="Form_RememberMe" name="User/RememberMe" value="1"><input type="hidden" name="Checkboxes[]" value="RememberMe"> 在这台电脑上记住我</label>      </li>
+                              <li class="Buttons">
+                                 <input type="submit" id="Form_SignUp" name="User/Sign_Up" value="注册" class="Button">
+                              </li>
+                           </ul>
+                           </div>
+                        </form></div>
+                     {% endblock %}
+
+                     {% block panel %}
+
+                     {% endblock %}
+
+              {% block foot %}
+
+              {% endblock %}
