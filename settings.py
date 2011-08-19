@@ -29,7 +29,6 @@ USE_I18N = False
 DEFAULT_LANG = 'en'
 
 INSTALLED_APPS = (
-    'kay.auth',
     'yan.auth',
     'tasteofhome',
 )
@@ -41,14 +40,14 @@ APP_MOUNT_POINTS = {
 # You can remove following settings if unnecessary.
 CONTEXT_PROCESSORS = (
   'kay.context_processors.request',
-  'kay.context_processors.url_functions',
+  'yan.context_processors.url_functions',
   'kay.context_processors.media_url',
-  'kay.auth.context_processors.login_box',
+  'yan.auth.context_processors.login_box',
 )
 
 MIDDLEWARE_CLASSES = (
     'kay.sessions.middleware.SessionMiddleware',
-    'kay.auth.middleware.AuthenticationMiddleware',
+    'yan.auth.middleware.AuthenticationMiddleware',
     'kay.ext.appstats.middleware.AppStatsMiddleware',
 )
 REVERSE_PROXIED_DOMAIN='jxw.samdeha.com'
