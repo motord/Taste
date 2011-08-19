@@ -1,0 +1,39 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/macros.html'
+
+def root(context, environment=environment):
+    t_1 = environment.filters['safe']
+    if 0: yield None
+    def macro():
+        t_2 = []
+        l_login_box_form = context.resolve('login_box_form')
+        l_request = context.resolve('request')
+        l_url_for = context.resolve('url_for')
+        pass
+        t_2.append(
+            u'<h1>\u767b\u9646</h1>\n<div class="Box">\n   ', 
+        )
+        def macro():
+            t_3 = []
+            l_login_box_form = context.resolve('login_box_form')
+            pass
+            t_3.extend((
+                u'\n    <div>\n        <ul>\n          <li>\n             <label for="Form_Email">Email</label>\n            ', 
+                escape(t_1(context.call(environment.getattr(l_login_box_form, 'email')))), 
+                u'\n          </li>\n          <li>\n             <label for="Form_Password">\u5bc6\u7801</label>\n             ', 
+                escape(t_1(context.call(environment.getattr(l_login_box_form, 'password')))), 
+                u'\n             <a href="/index.php?p=/entry/passwordrequest" class="ForgotPassword">\u5fd8\u8bb0\u4e86?</a>\n          </li>\n          <li class="Buttons">\n             <input type="submit" id="Form_SignIn" name="User/Sign_In" value="\u767b\u9646" class="Button">\n             <label for="SignInRememberMe" class="CheckBoxLabel">\n                 <input type="checkbox" id="SignInRememberMe" name="User/RememberMe" value="1">\n                 <input type="hidden" name="Checkboxes[]" value="RememberMe"> \u8bb0\u4f4f\u6211\u7684\u767b\u9646\u72b6\u6001</label>\n          </li>\n          <li class="CreateAccount">\n             \u6ca1\u6709\u8d26\u53f7\u4e48? <a href="/index.php?p=/entry/register">\u521b\u5efa\u4e00\u4e2a.</a>\n          </li>\n        </ul>\n    </div>\n', 
+            ))
+            return Markup(concat(t_3))
+        caller = Macro(environment, macro, None, (), (), False, False, False)
+        t_2.append(context.call(l_login_box_form, action=context.call(l_url_for, 'auth/login_box', next=environment.getattr(l_request, 'url')), caller=caller))
+        t_2.append(
+            u'\n    <form id="Form_User_Password" method="post" action="/index.php?p=/entry/passwordrequest" style="display: none;">\n        <div>\n            <input type="hidden" id="Form_TransientKey1" name="User/TransientKey" value="CWKNLUPCPRY0">\n            <input type="hidden" id="Form_hpt1" name="hpt" value="" style="display: none;">\n            <input type="hidden" id="Form_ClientHour1" name="User/ClientHour" value="21">\n            <input type="hidden" id="Form_Target1" name="User/Target" value="/">\n            <ul>\n              <li>\n                 <label for="Form_Email">\u8f93\u5165\u4f60\u7684 Email \u5730\u5740</label>\n                 <input type="text" id="Form_Email1" name="User/Email" value="" class="InputBox">\n              </li>\n              <li class="Buttons">\n                 <input type="submit" id="Form_Requestanewpassword" name="User/Request_a_new_password" value="\u8bf7\u6c42\u65b0\u5bc6\u7801" class="Button">\n                <div>\n                    <a href="/index.php?p=/entry/signin" class="ForgotPassword">\u6211\u73b0\u5728\u60f3\u8d77\u4e86!</a>\n                </div>\n              </li>\n           </ul>\n        </div>\n    </form>\n</div>', 
+        )
+        return Markup(concat(t_2))
+    context.exported_vars.add('render_loginbox')
+    context.vars['render_loginbox'] = l_render_loginbox = Macro(environment, macro, 'render_loginbox', (), (), False, False, False)
+
+blocks = {}
+debug_info = '1=8&2=14&4=17&9=23&13=25&4=30&27=31'
