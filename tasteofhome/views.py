@@ -28,6 +28,8 @@ from kay.auth.decorators import login_required
 from kay.utils import render_to_response
 from models import Tag
 from google.appengine.ext import db
+from lib import recaptcha
+from kay.conf import settings
 
 # Create your views here.
 
@@ -45,7 +47,9 @@ def forum(request):
   return render_to_response('tasteofhome/forum.html', {'tags': tags})
 
 def register(request):
-  return render_to_response('tasteofhome/register.html')
+  return render_to_response('tasteofhome/register.html', {'captcha': recaptcha.displayhtml(public_key = settings.RECAPTCHA_PUBLIC_KEY,
+                                                                                           use_ssl = False,
+                                                                                           error = None)})
 
 def course(request, key):
   course=db.get(key)

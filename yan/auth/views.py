@@ -62,7 +62,7 @@ def login(request):
   form = LoginForm()
   if request.method == "POST":
     if form.validate(request.form):
-      result = login(request, user_name=form.data['user_name'],
+      result = login(request, email=form.data['email'],
                               password=form.data['password'])
       if result:
         if owned_domain_hack == 'True':

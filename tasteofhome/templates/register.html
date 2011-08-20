@@ -25,9 +25,10 @@
                               <li class="Gender">
                                  <label for="Form_Gender">性别</label>
                         <label for="Form_Gender" class="RadioLabel"><input type="radio" id="Form_Gender" name="User/Gender" value="m" checked="checked" inlineerrors=""> 男</label><label for="Form_Gender1" class="RadioLabel"><input type="radio" id="Form_Gender1" name="User/Gender" value="f" inlineerrors=""> 女</label>      </li>
-                              <li class="CaptchaInput"><label for="Form_SecurityCheck">Security Check</label>
-                        To use reCAPTCHA you must get an API key from <a href="http://recaptcha.net/api/getkey">http://recaptcha.net/api/getkey</a></li>
-                              <li>
+                              <li class="CaptchaInput">
+                                 <label for="Form_SecurityCheck">Security Check</label>
+                                 {{ captcha|safe }}
+                              </li>
                                  <label for="Form_TermsOfService" class="CheckBoxLabel"><input type="checkbox" id="Form_TermsOfService" name="User/TermsOfService" value="1"><input type="hidden" name="Checkboxes[]" value="TermsOfService"> 我同意 <a id="TermsOfService" class="Popup" target="terms" href="/index.php?p=/dashboard/home/termsofservice">服务条款</a></label><label for="Form_RememberMe" class="CheckBoxLabel"><input type="checkbox" id="Form_RememberMe" name="User/RememberMe" value="1"><input type="hidden" name="Checkboxes[]" value="RememberMe"> 在这台电脑上记住我</label>      </li>
                               <li class="Buttons">
                                  <input type="submit" id="Form_SignUp" name="User/Sign_Up" value="注册" class="Button">

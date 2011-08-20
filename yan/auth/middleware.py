@@ -25,16 +25,17 @@ class LazyUser(object):
 
 
 class AuthenticationMiddleware(object):
+  def __init__(self):
+      from kay import exceptions
+      try:
+        klass = import_string(settings.AUTH_USER_BACKEND)
+      except (AttributeError, ImportError), e:
+        raise exceptions.ImproperlyConfigured, \
+            'Failed to import %s: "%s".' %\
+            (settings.AUTH_USER_BACKEND, e)
+      local.app.auth_backend = klass()
+
   def process_request(self, request):
-    if local.app.auth_backend == None:
-        from kay import exceptions
-        try:
-          klass = import_string(settings.AUTH_USER_BACKEND)
-        except (AttributeError, ImportError), e:
-          raise exceptions.ImproperlyConfigured, \
-              'Failed to import %s: "%s".' %\
-              (settings.AUTH_USER_BACKEND, e)
-        local.app.auth_backend = klass()
     request.__class__.user = LazyUser()
     return None
 
