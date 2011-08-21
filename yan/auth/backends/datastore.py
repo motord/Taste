@@ -42,7 +42,7 @@ class DatastoreBackend(object):
         return db.get(session_user)
       else:
         auth_model_class = import_string(settings.AUTH_USER_MODEL)
-        return auth_model_class.get_by_user_name(session_user)
+        return auth_model_class.get_by_email(session_user)
     else:
       return AnonymousUser()
 
@@ -55,16 +55,16 @@ class DatastoreBackend(object):
   def store_user(self, user):
     from kay.sessions import renew_session
     renew_session(local.request)
-    local.request.session['_user'] = user.user_name
+    local.request.session['_user'] = user.email
     return True
 
-  def login(self, request, user_name, password):
+  def login(self, request, email, password):
     try:
       auth_model_class = import_string(settings.AUTH_USER_MODEL)
     except (ImportError, AttributeError), e:
       raise ImproperlyConfigured, \
           'Failed to import %s: "%s".' % (settings.AUTH_USER_MODEL, e)
-    user = auth_model_class.get_by_user_name(user_name)
+    user = auth_model_class.get_by_email(email)
     if user is None:
       return False
     if user.check_password(password):

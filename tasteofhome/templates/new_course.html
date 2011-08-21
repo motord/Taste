@@ -1,0 +1,50 @@
+{% extends "tasteofhome/base.html" %}
+        {% block javascript %}
+
+        {% endblock %}
+                     {% block body_class %} Dashboard Entry register {% endblock %}
+
+                     {% block content %}
+                        <div id="DiscussionForm">
+                           <h2>新本地菜</h2>
+                           {% call form() %}
+                        <div>
+                            {{ form['name'].label()|safe }}
+                            {{ form['name']()|safe }}
+                            <div class="Category">
+                                {{ form['tag'].label()|safe }}
+                                {{ form['tag']()|safe }}
+                            </div>
+                            <div>
+                               {{ form['owner'].label()|safe }}
+                               {{ form['owner']()|safe }}
+                            </div>
+                            {{ form['description']()|safe }}
+                            <div class="PostFormControlPanel">
+                                <ul class="PostOptions">
+                                    <li>
+                                        {{ form['mouth'].label()|safe }}
+                                        {{ form['mouth']()|safe }}
+                                    </li>
+                                    <li>
+                                        {{ form['hand'].label()|safe }}
+                                        {{ form['hand']()|safe }}
+                                    </li>
+                                </ul>
+                           <div class="AttachFileLink">
+                               {{ form['avatar'].label()|safe }}
+                               {{ form['avatar']()|safe }}
+                           </div>
+                        {{ form.default_actions()|safe }}
+                        </div>
+                        {% endcall %}
+                        </div>
+                     {% endblock %}
+
+                     {% block panel %}
+
+                     {% endblock %}
+
+              {% block foot %}
+
+              {% endblock %}

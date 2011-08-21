@@ -26,10 +26,14 @@ from kay.auth.decorators import login_required
 """
 
 from kay.utils import render_to_response
-from models import Tag
+from models import Tag, Course, Message
+from forms import CourseForm
 from google.appengine.ext import db
 from lib import recaptcha
 from kay.conf import settings
+from yan.auth.decorators import login_required
+from werkzeug import redirect
+from werkzeug.exceptions import NotFound
 
 # Create your views here.
 
@@ -50,17 +54,58 @@ def register(request):
   return render_to_response('tasteofhome/register.html', {'captcha': recaptcha.displayhtml(public_key = settings.RECAPTCHA_PUBLIC_KEY,
                                                                                            use_ssl = False,
                                                                                            error = None)})
+def termsofservice(request):
+  return render_to_response('tasteofhome/termsofservice.html')
 
 def course(request, key):
   course=db.get(key)
   return render_to_response('tasteofhome/course.html', {'course': course})
 
-def post_course(request, key):
-  tag=db.get(key)
-  return render_to_response('tasteofhome/post_course.html', {'tag': tag})
+def with_course(fun):
+    def decorate(self, course_key=None):
+        course=None
+        if course_key:
+            course=db.get(course_key)
+            if not course:
+                raise NotFound
+        return fun(self, course)
+    return decorate
+
+def with_tag(fun):
+    def decorate(self, tag_key=None):
+        tag=None
+        if tag_key:
+            tag=db.get(tag_key)
+            if not tag:
+                raise NotFound
+        return fun(self, tag)
+    return decorate
+
+@login_required
+@with_tag
+def new_course(request, tag):
+  form=CourseForm(initial={'tag':tag, 'owner':request.user})
+  if request.method == 'POST':
+      if form.validate(request.form):
+          return redirect('')
+  return render_to_response('tasteofhome/new_course.html', {'form': form.as_widget()})
+
+@login_required
+@with_course
+def edit_course(request, course):
+  form=CourseForm(instance=course)
+  if request.method == 'POST':
+      if form.validate(request.form):
+          if request.user.is_authenticated():
+              user=request.user
+          else:
+              user=None
+          new_course=form.save(owner=user)
+          return
+  return render_to_response('tasteofhome/edit_course.html', {'tag': tag})
 
 def post_message(request, key):
   course=db.get(key)
-  return render_to_response('tasteofhome/post_message.html', {'course': course})
+  return render_to_response('tasteofhome/new_message.html', {'course': course})
 
 

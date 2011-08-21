@@ -99,7 +99,7 @@ class DatastoreUserDBOperationMixin(object):
     return 'u:%s' % email
 
   @classmethod
-  def get_by_user_name(cls, email):
+  def get_by_email(cls, email):
     return cls.get_by_key_name(cls.get_key_name(email))
 
   @classmethod

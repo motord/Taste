@@ -52,7 +52,7 @@ def logout(request):
     from yan.auth.models import AnonymousUser
     request.user = AnonymousUser()
 
-def create_new_user(user_name, password=None, **kwargs):
+def create_new_user(email, user_name, password=None, **kwargs):
   try:
     auth_model = import_string(settings.AUTH_USER_MODEL)
   except (ImportError, AttributeError), e:
@@ -64,11 +64,11 @@ def create_new_user(user_name, password=None, **kwargs):
   else:
     kwargs['password'] = auth_model.get_unusable_password()
   def txn():
-    user = auth_model.get_by_key_name(auth_model.get_key_name(user_name))
+    user = auth_model.get_by_key_name(auth_model.get_key_name(email))
     if user:
-      raise DuplicateKeyError("An user: %s is already registered." % user_name)
-    new_user = auth_model(key_name=auth_model.get_key_name(user_name),
-                          user_name=user_name, **kwargs)
+      raise DuplicateKeyError("The email: %s is already registered." % email)
+    new_user = auth_model(key_name=auth_model.get_key_name(email),
+                          email=email, user_name=user_name, **kwargs)
 
     new_user.put()
     return new_user
