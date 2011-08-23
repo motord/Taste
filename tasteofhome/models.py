@@ -27,6 +27,12 @@ class Tag(db.Model):
     created=db.DateTimeProperty(auto_now_add=True)
     updated=db.DateTimeProperty(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
+    def __unicode__(self):
+        return self.name
+
 class TagCoursesIndex(db.Model):
     n_courses=db.IntegerProperty()
     courses=db.ListProperty(db.Key)

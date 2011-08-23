@@ -1564,3 +1564,7 @@ def populate_forum():
     tag=Tag(name=u'论坛', depth=99)
     key=tag.put()
     db.put([Tag(parent=key, name=t, depth=100) for t in [u'公告', u'提问', u'反馈', u'开发者']])
+
+def create_admin():
+    from yan.auth import create_new_user
+    create_new_user('motor@samdeha.com', 'motor', 'omerta', is_admin=True)

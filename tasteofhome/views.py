@@ -27,7 +27,7 @@ from kay.auth.decorators import login_required
 
 from kay.utils import render_to_response
 from models import Tag, Course, Message
-from forms import CourseForm
+from forms import CourseForm, DiscussionForm
 from google.appengine.ext import db
 from lib import recaptcha
 from kay.conf import settings
@@ -104,8 +104,24 @@ def edit_course(request, course):
           return
   return render_to_response('tasteofhome/edit_course.html', {'tag': tag})
 
-def post_message(request, key):
-  course=db.get(key)
-  return render_to_response('tasteofhome/new_message.html', {'course': course})
+@login_required
+def new_discussion(request):
+  form=DiscussionForm(initial={'owner':request.user})
+  if request.method == 'POST':
+      if form.validate(request.form):
+          return redirect('')
+  return render_to_response('tasteofhome/new_discussion.html', {'form': form.as_widget()})
+
+@login_required
+@with_course
+def edit_discussion(request, course):
+  form=DiscussionForm(instance=course)
+  if request.method == 'POST':
+      if form.validate(request.form):
+          new_course=form.save(owner=user)
+          return
+  return render_to_response('tasteofhome/edit_discussion.html', {'tag': tag})
 
 
+def robots(request):
+    return render_to_response('tasteofhome/robots.txt')

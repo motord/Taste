@@ -3,7 +3,7 @@
     <head>
         <title>{% block title %}家乡味{% endblock %}</title>
         <link rel="alternate" type="application/rss+xml" title="All Discussions - 家乡味" href="http://vanilla.samdeha.com/index.php?p=/discussions/feed.rss" />
-        <link rel="stylesheet" type="text/css" href="/media/css/style.css?v=2.0.17.27" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/media/css/style.css?v=2.0.17.30" media="screen" />
         <link rel="stylesheet" type="text/css" href="/media/css/voting.css?v=1.0.4.1b" media="screen" />
         <link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon" />
         <link rel="canonical" href="http://vanilla.samdeha.com/index.php?p=/discussions/p1" />
@@ -27,7 +27,7 @@
                             <li class=" Highlight"><a href="/forum">论坛</a></li>
                             {% if request.user.is_anonymous() %}
                                 <li>
-                                    <a href="{{ create_login_url() }}">登陆</a>
+                                    <a href="{{ create_login_url() }}" class="SignInPopup">登陆</a>
                                 </li>
                             {% else %}
                                 <li><a>{{ reqeust.user }}</a></li>
