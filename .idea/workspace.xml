@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22aeaa2d-18f3-4243-a5c7-cfec15869979" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasteofhome/templates/discussion.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasteofhome/templates/macros.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/forms.py" afterPath="$PROJECT_DIR$/tasteofhome/forms.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/models.py" afterPath="$PROJECT_DIR$/tasteofhome/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/templates/course.html" afterPath="$PROJECT_DIR$/tasteofhome/templates/course.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/templates/forum.html" afterPath="$PROJECT_DIR$/tasteofhome/templates/forum.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/templates/new_course.html" afterPath="$PROJECT_DIR$/tasteofhome/templates/new_course.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/templates/new_discussion.html" afterPath="$PROJECT_DIR$/tasteofhome/templates/new_discussion.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/templates/user.html" afterPath="$PROJECT_DIR$/tasteofhome/templates/user.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/templates/robots.txt" afterPath="$PROJECT_DIR$/tasteofhome/templates/robots.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/templates/tag.html" afterPath="$PROJECT_DIR$/tasteofhome/templates/tag.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/templates_compiled/forum.html" afterPath="$PROJECT_DIR$/tasteofhome/templates_compiled/forum.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/urls.py" afterPath="$PROJECT_DIR$/tasteofhome/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/views.py" afterPath="$PROJECT_DIR$/tasteofhome/views.py" />
@@ -35,73 +35,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="forum.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tasteofhome/templates/forum.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="104" selection-start="3997" selection-end="3997" vertical-scroll-proportion="-21.25">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tasteofhome/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="0" selection-end="655" vertical-scroll-proportion="-10.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="discussion.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tasteofhome/templates/discussion.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="0" selection-start="1288" selection-end="1288" vertical-scroll-proportion="-21.875">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="course.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tasteofhome/templates/course.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tasteofhome/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="8" selection-start="1828" selection-end="1828" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tasteofhome/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="131" column="73" selection-start="5274" selection-end="5274" vertical-scroll-proportion="-16.592592">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tasteofhome/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="137" column="47" selection-start="4194" selection-end="4194" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tasteofhome/templates/user.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="655" selection-end="655" vertical-scroll-proportion="0.36048064">
+            <state line="120" column="37" selection-start="3628" selection-end="3628" vertical-scroll-proportion="0.38540334">
               <folding />
             </state>
           </provider>
@@ -110,16 +47,34 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tasteofhome/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="27" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0">
+            <state line="37" column="36" selection-start="1394" selection-end="1394" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new_discussion.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tasteofhome/templates/new_discussion.html">
+      <file leaf-file-name="macros.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tasteofhome/templates/macros.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="0" selection-end="1288" vertical-scroll-proportion="-16.875">
+            <state line="36" column="61" selection-start="2330" selection-end="2330" vertical-scroll-proportion="-22.5">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tasteofhome/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="124" column="26" selection-start="4783" selection-end="4783" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tasteofhome/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="66" column="20" selection-start="2181" selection-end="2181" vertical-scroll-proportion="-6.428571">
               <folding />
             </state>
           </provider>
@@ -139,22 +94,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/yan/auth/views.py" />
-        <option value="$PROJECT_DIR$/tasteofhome/templates/edit_discussion.html" />
-        <option value="$PROJECT_DIR$/tasteofhome/templates/tag.html" />
-        <option value="$PROJECT_DIR$/tasteofhome/templates/base.html" />
         <option value="$PROJECT_DIR$/media/css/style.css" />
         <option value="$PROJECT_DIR$/index.yaml" />
         <option value="$PROJECT_DIR$/tasteofhome/data.py" />
-        <option value="$PROJECT_DIR$/tasteofhome/models.py" />
         <option value="$PROJECT_DIR$/tasteofhome/templates/new_course.html" />
         <option value="$PROJECT_DIR$/tasteofhome/templates/new_discussion.html" />
-        <option value="$PROJECT_DIR$/tasteofhome/templates/forum.html" />
         <option value="$PROJECT_DIR$/tasteofhome/templates/discussion.html" />
-        <option value="$PROJECT_DIR$/tasteofhome/forms.py" />
-        <option value="$PROJECT_DIR$/tasteofhome/urls.py" />
-        <option value="$PROJECT_DIR$/tasteofhome/views.py" />
         <option value="$PROJECT_DIR$/tasteofhome/templates/user.html" />
+        <option value="$PROJECT_DIR$/tasteofhome/templates/course.html" />
+        <option value="$PROJECT_DIR$/tasteofhome/templates/robots.txt" />
+        <option value="$PROJECT_DIR$/tasteofhome/templates/forum.html" />
+        <option value="$PROJECT_DIR$/tasteofhome/templates/tag.html" />
+        <option value="$PROJECT_DIR$/tasteofhome/urls.py" />
+        <option value="$PROJECT_DIR$/tasteofhome/templates/macros.html" />
+        <option value="$PROJECT_DIR$/tasteofhome/models.py" />
+        <option value="$PROJECT_DIR$/tasteofhome/forms.py" />
+        <option value="$PROJECT_DIR$/tasteofhome/views.py" />
       </list>
     </option>
   </component>
@@ -213,6 +168,60 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="yan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jiaxiangwei" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jiaxiangwei" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="auth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jiaxiangwei" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jiaxiangwei" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="auth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jiaxiangwei" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jiaxiangwei" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="tasteofhome" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -254,16 +263,16 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="89" />
-    <property name="DefaultHtmlFileTemplate" value="Html" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="974" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="972" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="974" />
+    <property name="DefaultHtmlFileTemplate" value="Html" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="89" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="86" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="App Engine server.jiaxiangwei">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
@@ -446,22 +455,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="29" width="1280" height="976" extended-state="0" />
+    <frame x="1" y="28" width="1280" height="976" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288835" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288835" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288835" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2232" sideWeight="0.32524273" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2232" sideWeight="0.55097085" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2232" sideWeight="0.66504854" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2232" sideWeight="0.4393204" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39927185" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288835" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288835" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -482,7 +491,7 @@
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="new_discussion successfully posted" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored course field names &amp; couple new views added" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -512,6 +521,7 @@
     <MESSAGE value="working on course form&#10;" />
     <MESSAGE value="new_course &amp; new_discussion" />
     <MESSAGE value="new_discussion successfully posted" />
+    <MESSAGE value="refactored course field names &amp; couple new views added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -544,114 +554,120 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../kay-1.1.1/kay/utils/forms/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1171" column="26" selection-start="33187" selection-end="33187" vertical-scroll-proportion="0.34034416">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kay/utils/forms/modelform.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="669" column="6" selection-start="23058" selection-end="23058" vertical-scroll-proportion="0.2332696">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasteofhome/templates/tag.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasteofhome/templates/new_course.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="573" selection-end="764" vertical-scroll-proportion="-11.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kay/utils/forms/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="522" column="6" selection-start="14514" selection-end="14514" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasteofhome/templates/course.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasteofhome/templates/new_discussion.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="0" selection-end="1288" vertical-scroll-proportion="-16.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasteofhome/templates/discussion.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="1288" selection-end="1288" vertical-scroll-proportion="-21.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yan/auth/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="6" selection-start="3885" selection-end="3885" vertical-scroll-proportion="2.2315652">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasteofhome/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="8" selection-start="1828" selection-end="1828" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasteofhome/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="73" selection-start="5274" selection-end="5274" vertical-scroll-proportion="-16.592592">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasteofhome/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="27" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasteofhome/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="137" column="47" selection-start="4194" selection-end="4194" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasteofhome/templates/forum.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="104" selection-start="3997" selection-end="3997" vertical-scroll-proportion="-21.25">
-          <folding />
-        </state>
+        <state line="121" column="6" selection-start="3885" selection-end="3885" vertical-scroll-proportion="2.2315652" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tasteofhome/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="0" selection-end="655" vertical-scroll-proportion="-10.0">
+        <state line="16" column="0" selection-start="0" selection-end="655" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tasteofhome/templates/user.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="655" selection-end="655" vertical-scroll-proportion="0.36048064">
+        <state line="18" column="0" selection-start="655" selection-end="655" vertical-scroll-proportion="0.35064936">
+          <folding>
+            <marker date="1314264035000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1314264035000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasteofhome/templates/new_discussion.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="0" selection-end="1288" vertical-scroll-proportion="0.52597404">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasteofhome/templates/discussion.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="0" selection-start="0" selection-end="1288" vertical-scroll-proportion="-21.875">
+          <folding>
+            <marker date="1314261772000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1314261772000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1314261772000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1314261772000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasteofhome/templates/course.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="0" selection-start="1288" selection-end="1288" vertical-scroll-proportion="-21.875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yan/auth/templates/macros.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="49" selection-start="0" selection-end="2186" vertical-scroll-proportion="0.24456522">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasteofhome/templates/robots.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="30" selection-end="30" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kay/_internal/templates_compiled/defaulterror.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="59" selection-start="91" selection-end="91" vertical-scroll-proportion="0.032258064">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasteofhome/templates/tag.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="54" selection-start="92" selection-end="92" vertical-scroll-proportion="-0.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasteofhome/templates/forum.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="38" selection-end="123" vertical-scroll-proportion="0.03963012">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasteofhome/templates/macros.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="61" selection-start="2330" selection-end="2330" vertical-scroll-proportion="-22.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasteofhome/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="36" selection-start="1394" selection-end="1394" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasteofhome/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="124" column="26" selection-start="4783" selection-end="4783" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasteofhome/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="20" selection-start="2181" selection-end="2181" vertical-scroll-proportion="-6.428571">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasteofhome/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="120" column="37" selection-start="3628" selection-end="3628" vertical-scroll-proportion="0.38540334">
           <folding />
         </state>
       </provider>

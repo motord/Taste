@@ -1,4 +1,5 @@
 {% extends "tasteofhome/base.html" %}
+{% from 'tasteofhome/macros.html' import render_discussion_list_item with context %}
         {% block javascript %}
         <script type="text/javascript" src="/media/js/forum.js?v=2.0.17.10"></script>
         {% endblock %}
@@ -13,38 +14,7 @@
                          </div>
                          <ul class="DataList Discussions">
                             {% for discussion in discussions %}
-                               <li class="Item Alt  Mine">
-                                   <div class="StatBox AnswersBox"><span>Comments</span>0</div>
-                                   <div class="StatBox ViewsBox"><span>Views</span>4</div>
-                                   <div class="StatBox FollowsBox"><a href="/index.php?p=/vanilla/discussion/bookmark/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" title="Bookmark"><span>Follows</span>0</a></div>
-                                   <div class="StatBox VotesBox"><a href="/index.php?p=/vanilla/discussion/votediscussion/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" title="Vote"><span>Votes</span>0</a></div>
-                                   <div class="Options">
-                                       <a href="/index.php?p=/vanilla/discussion/bookmark/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="Bookmark" title="Bookmark">
-                                           <span class="Star"><img src="/media/images/pixel.png" alt="Bookmark" /></span>
-                                       </a>
-                                       <ul class="Options">
-                                         <li>
-                                           <strong>Options</strong>
-                                           <ul>
-                                              <li><a href="/index.php?p=/vanilla/post/editdiscussion/1" class="EditDiscussion">Edit</a></li>
-                                              <li><a href="/index.php?p=/vanilla/discussion/announce/1/Z4J2GFMVJ0YL" class="AnnounceDiscussion">Announce</a></li>
-                                              <li><a href="/index.php?p=/vanilla/discussion/sink/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="SinkDiscussion">Sink</a></li>
-                                              <li><a href="/index.php?p=/vanilla/discussion/close/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="CloseDiscussion">Close</a></li>
-                                              <li><a href="/index.php?p=/vanilla/discussion/delete/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="DeleteDiscussion">Delete</a></li>
-                                           </ul>
-                                         </li>
-                                       </ul>
-                                   </div>
-                                   <div class="ItemContent Discussion">
-                                        <a href="/forum/discussion/{{ discussion.key() }}" class="Title">{{ discussion.title }}</a>
-                                        <div class="Meta">
-                                            <span class="CommentCount">1 comment</span>
-                                            <span class="LastCommentBy">Started by <a href="/user/{{ discussion.owner.user_name }}">{{ discussion.owner.user_name }}</a></span>
-                                            <span class="LastCommentDate">August 6</span>
-                                            <span><a href="/forum/categories/{{ discussion.parent().name }}" class="Category">{{ discussion.parent().name }}</a></span>
-                                        </div>
-                                   </div>
-                               </li>
+                                {{ render_discussion_list_item(discussion) }}
                             {% endfor %}
                          </ul>
                      {% endblock %}

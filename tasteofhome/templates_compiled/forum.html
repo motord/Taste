@@ -8,6 +8,12 @@ def root(context, environment=environment):
     parent_template = environment.get_template('tasteofhome/base.html', '/forum.html')
     for name, parent_block in parent_template.blocks.iteritems():
         context.blocks.setdefault(name, []).append(parent_block)
+    included_template = environment.get_template('tasteofhome/macros.html', '/forum.html').make_module(context.parent, True)
+    l_render_discussion_list_item = getattr(included_template, 'render_discussion_list_item', missing)
+    if l_render_discussion_list_item is missing:
+        l_render_discussion_list_item = environment.undefined("the template %r (imported on line 2 in '/forum.html') does not export the requested name 'render_discussion_list_item'" % included_template.__name__, name='render_discussion_list_item')
+    context.vars['render_discussion_list_item'] = l_render_discussion_list_item
+    context.exported_vars.discard('render_discussion_list_item')
     for event in parent_template.root_render_func(context):
         yield event
 
@@ -16,15 +22,11 @@ def block_content(context, environment=environment):
     if 0: yield None
     yield u'\n                         <div class="Tabs DiscussionsTabs">\n                           <ul>\n                              <li class="Active"><a href="#/discussions">\u6240\u6709\u8ba8\u8bba</a></li>\n                              <li><a href="#/discussions/popular" class="PopularDiscussions">\u6700\u70ed</a></li>\n                              <li><a href="#/discussions/mine" class="MyDiscussions">\u6211\u7684\u8ba8\u8bba<span>1</span></a></li>\n                           </ul>\n                         </div>\n                         <ul class="DataList Discussions">\n                            '
     l_discussion = missing
+    l_render_discussion_list_item = context.resolve('render_discussion_list_item')
     for l_discussion in l_discussions:
         if 0: yield None
-        yield u'\n                               <li class="Item Alt  Mine">\n                                   <div class="StatBox AnswersBox"><span>Comments</span>0</div>\n                                   <div class="StatBox ViewsBox"><span>Views</span>4</div>\n                                   <div class="StatBox FollowsBox"><a href="/index.php?p=/vanilla/discussion/bookmark/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%%2Fdiscussions%%2F0%%2F1%%2Fgeneral" title="Bookmark"><span>Follows</span>0</a></div>\n                                   <div class="StatBox VotesBox"><a href="/index.php?p=/vanilla/discussion/votediscussion/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%%2Fdiscussions%%2F0%%2F1%%2Fgeneral" title="Vote"><span>Votes</span>0</a></div>\n                                   <div class="Options">\n                                       <a href="/index.php?p=/vanilla/discussion/bookmark/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%%2Fdiscussions%%2F0%%2F1%%2Fgeneral" class="Bookmark" title="Bookmark">\n                                           <span class="Star"><img src="/media/images/pixel.png" alt="Bookmark" /></span>\n                                       </a>\n                                       <ul class="Options">\n                                         <li>\n                                           <strong>Options</strong>\n                                           <ul>\n                                              <li><a href="/index.php?p=/vanilla/post/editdiscussion/1" class="EditDiscussion">Edit</a></li>\n                                              <li><a href="/index.php?p=/vanilla/discussion/announce/1/Z4J2GFMVJ0YL" class="AnnounceDiscussion">Announce</a></li>\n                                              <li><a href="/index.php?p=/vanilla/discussion/sink/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%%2Fdiscussions%%2F0%%2F1%%2Fgeneral" class="SinkDiscussion">Sink</a></li>\n                                              <li><a href="/index.php?p=/vanilla/discussion/close/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%%2Fdiscussions%%2F0%%2F1%%2Fgeneral" class="CloseDiscussion">Close</a></li>\n                                              <li><a href="/index.php?p=/vanilla/discussion/delete/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%%2Fdiscussions%%2F0%%2F1%%2Fgeneral" class="DeleteDiscussion">Delete</a></li>\n                                           </ul>\n                                         </li>\n                                       </ul>\n                                   </div>\n                                   <div class="ItemContent Discussion">\n                                        <a href="/forum/discussion/%s" class="Title">%s</a>\n                                        <div class="Meta">\n                                            <span class="CommentCount">1 comment</span>\n                                            <span class="LastCommentBy">Started by <a href="/user/%s">%s</a></span>\n                                            <span class="LastCommentDate">August 6</span>\n                                            <span><a href="/forum/categories/%s" class="Category">%s</a></span>\n                                        </div>\n                                   </div>\n                               </li>\n                            ' % (
-            escape(context.call(environment.getattr(l_discussion, 'key'))), 
-            escape(environment.getattr(l_discussion, 'title')), 
-            escape(environment.getattr(environment.getattr(l_discussion, 'owner'), 'user_name')), 
-            escape(environment.getattr(environment.getattr(l_discussion, 'owner'), 'user_name')), 
-            escape(environment.getattr(context.call(environment.getattr(l_discussion, 'parent')), 'name')), 
-            escape(environment.getattr(context.call(environment.getattr(l_discussion, 'parent')), 'name')), 
+        yield u'\n                                %s\n                            ' % (
+            escape(context.call(l_render_discussion_list_item, l_discussion)), 
         )
     l_discussion = missing
     yield u'\n                         </ul>\n                     '
@@ -63,4 +65,4 @@ def block_panel(context, environment=environment):
     yield u'\n                     '
 
 blocks = {'content': block_content, 'foot': block_foot, 'javascript': block_javascript, 'panel': block_panel}
-debug_info = '1=8&6=14&15=19&39=22&42=24&44=26&48=30&89=32&2=36&52=40&53=46&54=49&64=53&70=55&71=58&72=62&86=63'
+debug_info = '1=8&2=11&7=20&16=26&17=29&18=32&59=34&3=38&22=42&23=48&24=51&34=55&40=57&41=60&42=64&56=65'

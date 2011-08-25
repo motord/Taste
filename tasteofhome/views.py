@@ -26,7 +26,7 @@ from kay.auth.decorators import login_required
 """
 
 from kay.utils import render_to_response, url_for
-from models import Tag, Course, Message, User
+from models import Tag, Course, Message, User, CourseMessagesIndex
 from forms import CourseForm, DiscussionForm, MessageForm
 from google.appengine.ext import db
 from lib import recaptcha
@@ -127,7 +127,7 @@ def edit_discussion(request, course):
 def forum_discussion(request, course):
     discussion=course
     form=MessageForm()
-    return render_to_response('tasteofhome/discussion.html', {'discussion': discussion})
+    return render_to_response('tasteofhome/discussion.html', {'discussion': discussion, 'form':form})
 
 @with_tag
 def forum_category(request, tag):

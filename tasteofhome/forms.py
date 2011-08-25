@@ -70,12 +70,7 @@ class CourseForm(ModelForm):
             tag=self['tag']
             kwargs['parent']=tag
             course=super(CourseForm, self).save(commit, **kwargs)
-            tagCoursesIndex=TagCoursesIndex.gql("WHERE ANCESTOR IS :1", tag).get()
-            if not tagCoursesIndex:
-                tagCoursesIndex=TagCoursesIndex(parent=tag)
-            tagCoursesIndex.n_courses += 1
-            tagCoursesIndex.courses.append(course)
-            tagCoursesIndex.put()
+            tag.add_course(course)
             return course
         def update_course():
             return super(CourseForm, self).save(commit, **kwargs)
@@ -100,12 +95,7 @@ class DiscussionForm(ModelForm):
             tag=self['tag']
             kwargs['parent']=tag
             discussion=super(DiscussionForm, self).save(commit, **kwargs)
-            tagCoursesIndex=TagCoursesIndex.gql("WHERE ANCESTOR IS :1", tag).get()
-            if not tagCoursesIndex:
-                tagCoursesIndex=TagCoursesIndex(parent=tag)
-            tagCoursesIndex.n_courses += 1
-            tagCoursesIndex.courses.append(discussion.key())
-            tagCoursesIndex.put()
+            tag.add_course(discussion)
             return discussion
         def update_discussion():
             return super(DiscussionForm, self).save(commit, **kwargs)
@@ -126,18 +116,13 @@ class MessageForm(ModelForm):
 
     def save(self, commit=True, create=True, **kwargs):
         def create_message():
-            tag=self['tag']
-            kwargs['parent']=tag
-            message=super(messageForm, self).save(commit, **kwargs)
-            tagCoursesIndex=TagCoursesIndex.gql("WHERE ANCESTOR IS :1", tag).get()
-            if not tagCoursesIndex:
-                tagCoursesIndex=TagCoursesIndex(parent=tag)
-            tagCoursesIndex.n_courses += 1
-            tagCoursesIndex.courses.append(message.key())
-            tagCoursesIndex.put()
+            course=self['course']
+            kwargs['parent']=course
+            message=super(MessageForm, self).save(commit, **kwargs)
+            course.add_message(message)
             return message
         def update_message():
-            return super(messageForm, self).save(commit, **kwargs)
+            return super(MessageForm, self).save(commit, **kwargs)
         if create:
             message=db.run_in_transaction(create_message)
         else:

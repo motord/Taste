@@ -1,0 +1,65 @@
+{% macro render_discussion_list_item(discussion) -%}
+<li class="Item Alt  Mine">
+    <div class="StatBox AnswersBox"><span>Comments</span>{{ discussion.num_messages() }}</div>
+    <div class="StatBox ViewsBox"><span>Views</span>{{ discussion.num_views() }}</div>
+    <div class="Options">
+        <a href="/index.php?p=/vanilla/discussion/bookmark/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="Bookmark" title="Bookmark">
+            <span class="Star"><img src="/media/images/pixel.png" alt="Bookmark" /></span>
+        </a>
+        <ul class="Options">
+          <li>
+            <strong>Options</strong>
+            <ul>
+               <li><a href="/index.php?p=/vanilla/post/editdiscussion/1" class="EditDiscussion">Edit</a></li>
+               <li><a href="/index.php?p=/vanilla/discussion/announce/1/Z4J2GFMVJ0YL" class="AnnounceDiscussion">Announce</a></li>
+               <li><a href="/index.php?p=/vanilla/discussion/sink/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="SinkDiscussion">Sink</a></li>
+               <li><a href="/index.php?p=/vanilla/discussion/close/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="CloseDiscussion">Close</a></li>
+               <li><a href="/index.php?p=/vanilla/discussion/delete/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="DeleteDiscussion">Delete</a></li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+    <div class="ItemContent Discussion">
+         <a href="/forum/discussion/{{ discussion.key() }}" class="Title">{{ discussion.title }}</a>
+         <div class="Meta">
+             <span class="CommentCount">1 comment</span>
+             <span class="LastCommentBy">Started by <a href="/user/{{ discussion.owner.user_name }}">{{ discussion.owner.user_name }}</a></span>
+             <span class="LastCommentDate">August 6</span>
+             <span><a href="/forum/categories/{{ discussion.parent().name }}" class="Category">{{ discussion.parent().name }}</a></span>
+         </div>
+    </div>
+</li>
+{%- endmacro %}
+
+{% macro render_course_list_item(course) -%}
+<li class="Item Alt  Mine">
+    <div class="StatBox AnswersBox"><span>Comments</span>{{ course.num_messages() }}</div>
+    <div class="StatBox ViewsBox"><span>Views</span>{{ course.num_views() }}</div>
+    <div class="Options">
+        <a href="/index.php?p=/vanilla/discussion/bookmark/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="Bookmark" title="Bookmark">
+            <span class="Star"><img src="/media/images/pixel.png" alt="Bookmark" /></span>
+        </a>
+        <ul class="Options">
+          <li>
+            <strong>Options</strong>
+            <ul>
+               <li><a href="/index.php?p=/vanilla/post/editdiscussion/1" class="EditDiscussion">Edit</a></li>
+               <li><a href="/index.php?p=/vanilla/discussion/announce/1/Z4J2GFMVJ0YL" class="AnnounceDiscussion">Announce</a></li>
+               <li><a href="/index.php?p=/vanilla/discussion/sink/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="SinkDiscussion">Sink</a></li>
+               <li><a href="/index.php?p=/vanilla/discussion/close/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="CloseDiscussion">Close</a></li>
+               <li><a href="/index.php?p=/vanilla/discussion/delete/1/Z4J2GFMVJ0YL&amp;amp;Target=vanilla%2Fdiscussions%2F0%2F1%2Fgeneral" class="DeleteDiscussion">Delete</a></li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+    <div class="ItemContent Discussion">
+         <a href="/forum/discussion/{{ discussion.key() }}" class="Title">{{ discussion.title }}</a>
+         <div class="Meta">
+             <span class="CommentCount">1 comment</span>
+             <span class="LastCommentBy">Started by <a href="/user/{{ discussion.owner.user_name }}">{{ discussion.owner.user_name }}</a></span>
+             <span class="LastCommentDate">August 6</span>
+             <span><a href="/forum/categories/{{ discussion.parent().name }}" class="Category">{{ discussion.parent().name }}</a></span>
+         </div>
+    </div>
+</li>
+{%- endmacro %}
