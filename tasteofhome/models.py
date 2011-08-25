@@ -34,7 +34,7 @@ class Tag(db.Model):
         return self.name
 
 class TagCoursesIndex(db.Model):
-    n_courses=db.IntegerProperty()
+    n_courses=db.IntegerProperty(default=0)
     courses=db.ListProperty(db.Key)
 
 class UserTagsIndex(db.Model):

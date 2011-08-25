@@ -25,7 +25,7 @@ from kay.auth.decorators import login_required
 
 """
 
-from kay.utils import render_to_response
+from kay.utils import render_to_response, url_for
 from models import Tag, Course, Message
 from forms import CourseForm, DiscussionForm
 from google.appengine.ext import db
@@ -47,8 +47,8 @@ def tag(request, key):
   return render_to_response('tasteofhome/tag.html', {'tag': tag, 'tags': tags})
 
 def forum(request):
-  tags=Tag.gql("WHERE depth = :1", 100)
-  return render_to_response('tasteofhome/forum.html', {'tags': tags})
+  discussions=Course.all()
+  return render_to_response('tasteofhome/forum.html', {'discussions': discussions})
 
 def register(request):
   return render_to_response('tasteofhome/register.html', {'captcha': recaptcha.displayhtml(public_key = settings.RECAPTCHA_PUBLIC_KEY,
@@ -109,7 +109,8 @@ def new_discussion(request):
   form=DiscussionForm(initial={'owner':request.user})
   if request.method == 'POST':
       if form.validate(request.form):
-          return redirect('')
+          form.save(create=True)
+          return redirect(url_for('tasteofhome/forum'))
   return render_to_response('tasteofhome/new_discussion.html', {'form': form.as_widget()})
 
 @login_required
