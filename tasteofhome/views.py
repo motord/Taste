@@ -26,8 +26,8 @@ from kay.auth.decorators import login_required
 """
 
 from kay.utils import render_to_response, url_for
-from models import Tag, Course, Message
-from forms import CourseForm, DiscussionForm
+from models import Tag, Course, Message, User
+from forms import CourseForm, DiscussionForm, MessageForm
 from google.appengine.ext import db
 from lib import recaptcha
 from kay.conf import settings
@@ -46,16 +46,10 @@ def tag(request, key):
   tags=Tag.gql("WHERE ANCESTOR IS :1 AND depth = :2", tag, tag.depth+1)
   return render_to_response('tasteofhome/tag.html', {'tag': tag, 'tags': tags})
 
-def forum(request):
-  discussions=Course.all()
-  return render_to_response('tasteofhome/forum.html', {'discussions': discussions})
-
 def register(request):
   return render_to_response('tasteofhome/register.html', {'captcha': recaptcha.displayhtml(public_key = settings.RECAPTCHA_PUBLIC_KEY,
                                                                                            use_ssl = False,
                                                                                            error = None)})
-def termsofservice(request):
-  return render_to_response('tasteofhome/termsofservice.html')
 
 def course(request, key):
   course=db.get(key)
@@ -104,6 +98,12 @@ def edit_course(request, course):
           return
   return render_to_response('tasteofhome/edit_course.html', {'tag': tag})
 
+
+
+def forum(request):
+  discussions=Course.all()
+  return render_to_response('tasteofhome/forum.html', {'discussions': discussions})
+
 @login_required
 def new_discussion(request):
   form=DiscussionForm(initial={'owner':request.user})
@@ -123,6 +123,25 @@ def edit_discussion(request, course):
           return
   return render_to_response('tasteofhome/edit_discussion.html', {'tag': tag})
 
+@with_course
+def forum_discussion(request, course):
+    discussion=course
+    form=MessageForm()
+    return render_to_response('tasteofhome/discussion.html', {'discussion': discussion})
+
+@with_tag
+def forum_category(request, tag):
+  discussions=Course.gql("WHERE ANCESTOR IS :1", tag)
+  return render_to_response('tasteofhome/forum.html', {'discussions': discussions})
+
+def user(request, user_name):
+    user=User.gql("WHERE user_name = :1", user_name).get()
+    return render_to_response('tasteofhome/user.html', {'user': user})
+
+
+
+def termsofservice(request):
+  return render_to_response('tasteofhome/termsofservice.html')
 
 def robots(request):
     return render_to_response('tasteofhome/robots.txt')

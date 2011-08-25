@@ -36,11 +36,12 @@
                                        </ul>
                                    </div>
                                    <div class="ItemContent Discussion">
-                                        <a href="/index.php?p=/discussion/1/%E7%BB%B5%E9%98%B3%E7%B1%B3%E7%B2%89" class="Title">绵阳米粉</a>            <div class="Meta">
-                                        <span class="CommentCount">1 comment</span>
-                                        <span class="LastCommentBy">Started by <a href="/index.php?p=/profile/1/zhaozhou">zhaozhou</a></span>
-                                        <span class="LastCommentDate">August 6</span>
-                                        <span><a href="/index.php?p=/categories/general" class="Category">General</a></span>
+                                        <a href="/forum/discussion/{{ discussion.key() }}" class="Title">{{ discussion.title }}</a>
+                                        <div class="Meta">
+                                            <span class="CommentCount">1 comment</span>
+                                            <span class="LastCommentBy">Started by <a href="/user/{{ discussion.owner.user_name }}">{{ discussion.owner.user_name }}</a></span>
+                                            <span class="LastCommentDate">August 6</span>
+                                            <span><a href="/forum/categories/{{ discussion.parent().name }}" class="Category">{{ discussion.parent().name }}</a></span>
                                         </div>
                                    </div>
                                </li>

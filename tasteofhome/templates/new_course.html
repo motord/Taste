@@ -9,8 +9,6 @@
                            <h2>新本地菜</h2>
                            {% call form() %}
                         <div>
-                            {{ form['name'].label()|safe }}
-                            {{ form['name']()|safe }}
                             <div>
                                 {{ form['tag'].label()|safe }}
                                 {{ form['tag']()|safe }}
@@ -19,7 +17,9 @@
                                {{ form['owner'].label()|safe }}
                                {{ form['owner']()|safe }}
                             </div>
-                            {{ form['description']()|safe }}
+                            {{ form['title'].label()|safe }}
+                            {{ form['title']()|safe }}
+                            {{ form['content']()|safe }}
                             <div class="PostFormControlPanel">
                                 <ul class="CourseOptions">
                                     <li class="mouth">

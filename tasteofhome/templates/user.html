@@ -1,10 +1,18 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends "tasteofhome/base.html" %}
+        {% block javascript %}
+        <script type="text/javascript" src="/media/js/home.js?v=2.0.17.10"></script>
+        {% endblock %}
 
-</body>
-</html>
+                     {% block content %}
+                        <ul id="tags" class="Headings">
+                            {% for tag in tags %}
+                                <li>
+                                    <a href="/tag/{{ tag.key() }}">{{ tag.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                     {% endblock %}
+
+              {% block foot %}
+
+              {% endblock %}

@@ -10,8 +10,8 @@ class User(DatastoreUser):
     avatar=db.BlobProperty()
 
 class Course(db.Model):
-    name=db.StringProperty()
-    description=db.StringProperty()
+    title=db.StringProperty()
+    content=db.StringProperty()
     avatar=db.BlobProperty()
     owner=db.ReferenceProperty(User)
     created=db.DateTimeProperty(auto_now_add=True)
