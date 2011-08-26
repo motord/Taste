@@ -61,7 +61,7 @@ class Tag(db.Model):
         return self.name
 
     def add_course(self, course):
-        tagCoursesIndex=TagCoursesIndex.gql("WHERE ANCESTOR IS :1", self).get()
+        tagCoursesIndex=TagCoursesIndex.gql("WHERE ANCESTOR IS :1 AND depth = :2", self, self.depth).get()
         if not tagCoursesIndex:
             tagCoursesIndex=TagCoursesIndex(parent=self)
         tagCoursesIndex.n_courses += 1
@@ -69,12 +69,13 @@ class Tag(db.Model):
         tagCoursesIndex.put()
 
     def num_courses(self):
-        tagCoursesIndex=TagCoursesIndex.gql("WHERE ANCESTOR IS :1", self).get()
+        tagCoursesIndex=TagCoursesIndex.gql("WHERE ANCESTOR IS :1 AND depth = :2", self, self.depth).get()
         if not tagCoursesIndex:
             return 0
         return tagCoursesIndex.n_courses
     
 class TagCoursesIndex(db.Model):
+    depth=db.IntegerProperty()
     n_courses=db.IntegerProperty(default=0)
     courses=db.ListProperty(db.Key)
 

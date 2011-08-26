@@ -102,7 +102,8 @@ def edit_course(request, course):
 
 def forum(request):
   discussions=Course.all()
-  return render_to_response('tasteofhome/forum.html', {'discussions': discussions})
+  tags=Tag.gql("WHERE depth = :1", 100)
+  return render_to_response('tasteofhome/forum.html', {'discussions': discussions, 'tags': tags})
 
 @login_required
 def new_discussion(request):
@@ -126,8 +127,9 @@ def edit_discussion(request, course):
 @with_course
 def forum_discussion(request, course):
     discussion=course
+    tags=Tag.gql("WHERE depth = :1", 100)
     form=MessageForm()
-    return render_to_response('tasteofhome/discussion.html', {'discussion': discussion, 'form':form})
+    return render_to_response('tasteofhome/discussion.html', {'discussion': discussion, 'form':form, 'tags': tags})
 
 @with_tag
 def forum_category(request, tag):

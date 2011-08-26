@@ -1,33 +1,86 @@
 {% extends "tasteofhome/base.html" %}
+{% from 'tasteofhome/macros.html' import render_forum_panel with context %}
         {% block javascript %}
 
         {% endblock %}
-                     {% block body_class %} Vanilla Post discussion {% endblock %}
+                     {% block body_class %} Vanilla Discussion Index {% endblock %}
 
                      {% block content %}
-                        <div id="DiscussionForm">
-                           <h2>开始新讨论</h2>
-                           {% call form() %}
-                        <div>
-                            <div>
-                               {{ form['owner'].label()|safe }}
-                               {{ form['owner']()|safe }}
-                            </div>
-                            {{ form['title'].label()|safe }}
-                            {{ form['title']()|safe }}
-                            <div class="Category">
-                                {{ form['tag'].label()|safe }}
-                                {{ form['tag']()|safe }}
-                            </div>
-                            {{ form['content']()|safe }}
-                        {{ form.default_actions()|safe }}
+                        <div class="Tabs HeadingTabs DiscussionTabs FirstPage">
+                           <ul>
+                              <li><a href="/categories/{{ discussion.parent_key() }}">{{ discussion.parent().name }}</a></li>
+                           </ul>
+                           <div class="SubTab">{{ discussion.title }}</div>
                         </div>
-                        {% endcall %}
+                        <ul class="MessageList Discussion FirstPage">
+                           <li class="Item Comment FirstComment" id="Discussion_16949">
+                               <div class="Comment">
+                                  <div class="Meta">
+                                     <span class="Author">
+                                        <a title="cgrealm" href="/profile/31740/cgrealm" class="ProfileLink">
+                                            <img src="http://vanillicon.com/78393902ebd8bcd2af55c201bb1480ff.png" alt="{{ discussion.owner.user_name }}" class="ProfilePhotoBig">
+                                        </a>
+                                         <a href="/user/{{ discussion.owner.user_name }}">{{ discussion.owner.user_name }}</a>
+                                     </span>
+                                     <span class="DateCreated">
+                                        <a href="/forum/discussion/{{ discussion.key() }}" class="Permalink" name="Item_1" rel="nofollow">{{ discussion.created }}</a>
+                                     </span>
+                                     <span class="CommentQuote">
+                                         <a href="http://vanillaforums.org/post/quote/16949/Discussion_16949">Quote</a>
+                                     </span>
+                                     <div class="CommentInfo">
+                                        <span>Posts: 7</span>
+                                     </div>
+                                   </div>
+                                   <div class="Message">
+                                         {{ discussion.content }}
+                                   </div>
+                               </div>
+                           </li>
+                            <li class="Item Comment Alt" id="Comment_143396">
+                               <div class="Comment">
+                                  <div class="Meta">
+                                              <span class="Author">
+                                        <a title="Gillingham" href="/profile/12762/Gillingham" class="ProfileLink"><img src="http://www.static.vanillaforums.org/uploads/userpics/913/nRG3D0TVI6Y3D.png" alt="Gillingham" class="ProfilePhotoBig"></a><a href="/profile/12762/Gillingham">Gillingham</a>         </span>
+                                     <span class="DateCreated">
+                                        <a href="/discussion/comment/143396#Comment_143396" class="Permalink" name="Item_2" rel="nofollow">August 25</a>         </span>
+                                           <span class="CommentQuote"><a href="http://vanillaforums.org/post/quote/16949/Comment_143396">Quote</a></span>         <div class="CommentInfo">
+                                        <span>Posts: 71</span>         </div>
+                                           </div>
+                                  <div class="Message">
+                                        Sounds like you have a really old php version		</div>
+                                     </div>
+                            </li>
+                        </ul>
+                        <div class="MessageForm CommentForm">
+                              <div class="Tabs CommentTabs">
+                              <ul>
+                                 <li class="Active">
+                                     <a href="/discussion/16949/2.0.18b2-on-nginx-server-cant-run#" class="WriteButton">Write Comment</a>
+                                 </li>
+                              </ul>
+                           </div>
+                           <form id="Form_Comment" method="post" action="/vanilla/post/comment">
+                                <div>
+                                    <input type="hidden" id="Form_TransientKey" name="Comment/TransientKey" value="SPFG8JMUKOV6">
+                                    <input type="hidden" id="Form_SomeRequiredField" name="Comment/SomeRequiredField" value="" style="display: none;">
+                                    <input type="hidden" id="Form_DiscussionID" name="Comment/DiscussionID" value="16949">
+                                    <input type="hidden" id="Form_CommentID" name="Comment/CommentID" value="">
+                                    <input type="hidden" id="Form_DraftID" name="Comment/DraftID" value="">
+                                    <div class="TextBoxWrapper">
+                                        <textarea id="Form_Body" name="Comment/Body" rows="6" cols="100" class="TextBox" style="overflow-x: hidden; overflow-y: hidden; display: block; "></textarea>
+                                    </div>
+                                    <div class="Buttons">
+                                        <a href="/forum" class="Back">Back to Discussions</a>
+                                        <input type="submit" id="Form_PostComment" name="Comment/Post_Comment" value="Post Comment" class="Button CommentButton">
+                                    </div>
+                                </div>
+                           </form>
                         </div>
                      {% endblock %}
 
                      {% block panel %}
-
+                        {{ render_forum_panel() }}
                      {% endblock %}
 
               {% block foot %}

@@ -14,6 +14,12 @@ def root(context, environment=environment):
         l_render_discussion_list_item = environment.undefined("the template %r (imported on line 2 in '/forum.html') does not export the requested name 'render_discussion_list_item'" % included_template.__name__, name='render_discussion_list_item')
     context.vars['render_discussion_list_item'] = l_render_discussion_list_item
     context.exported_vars.discard('render_discussion_list_item')
+    included_template = environment.get_template('tasteofhome/macros.html', '/forum.html').make_module(context.parent, True)
+    l_render_forum_panel = getattr(included_template, 'render_forum_panel', missing)
+    if l_render_forum_panel is missing:
+        l_render_forum_panel = environment.undefined("the template %r (imported on line 3 in '/forum.html') does not export the requested name 'render_forum_panel'" % included_template.__name__, name='render_forum_panel')
+    context.vars['render_forum_panel'] = l_render_forum_panel
+    context.exported_vars.discard('render_forum_panel')
     for event in parent_template.root_render_func(context):
         yield event
 
@@ -40,29 +46,11 @@ def block_javascript(context, environment=environment):
     yield u'\n        <script type="text/javascript" src="/media/js/forum.js?v=2.0.17.10"></script>\n        '
 
 def block_panel(context, environment=environment):
-    l_render_loginbox = context.resolve('render_loginbox')
-    l_request = context.resolve('request')
-    l_tags = context.resolve('tags')
+    l_render_forum_panel = context.resolve('render_forum_panel')
     if 0: yield None
-    yield u'\n                         '
-    if context.call(environment.getattr(environment.getattr(l_request, 'user'), 'is_anonymous')):
-        if 0: yield None
-        yield u'\n                             %s\n                              <div class="Box GuestBox">\n                                <h4>\u4f60\u597d, \u65b0\u540c\u5b66!</h4>\n                                <p>\u8c8c\u4f3c\u8fd9\u4f4d\u540c\u978b\u4f60\u662f\u65b0\u6765\u7684\u5427. \u70b9\u4e0b\u9762\u7684\u6309\u94ae\u53ef\u4ee5\u52a0\u5165\u6211\u4eec!</p>\n                                <p>\n                                   <a href="/#/signin" class="Button SignInPopup">\u767b\u9646</a>\n                                   <a href="/register" class="Button ApplyButton">\u7533\u8bf7\u52a0\u5165</a>\n                                   <a href="/#/weibo" title="\u7528\u5fae\u535a\u8d26\u53f7\u767b\u5f55"><img src="/media/images/weibo.png" /></a>\n                                </p>\n                              </div>\n                         ' % (
-            escape(context.call(l_render_loginbox)), 
-        )
-    else:
-        if 0: yield None
-        yield u'\n                             <a href="/forum/new/discussion" class="BigButton NewDiscussion">\u5f00\u59cb\u65b0\u8ba8\u8bba</a>\n                              <div class="Box BoxCategories">\n                                   <h4><a href="/index.php?p=/categories/all">Categories</a></h4>\n                                   <ul class="PanelInfo PanelCategories">\n                                      <li class="Active"><span><strong><a href="/index.php?p=/discussions">All Discussions</a></strong><span class="Count">1</span></span></li>\n                                      '
-        l_tag = missing
-        for l_tag in l_tags:
-            if 0: yield None
-            yield u'\n                                      <li class="Depth1"><strong><a href="/index.php?p=/categories/%s">%s</a></strong><span class="Count">0</span></li>\n                                      ' % (
-                escape(context.call(environment.getattr(l_tag, 'key'))), 
-                escape(environment.getattr(l_tag, 'name')), 
-            )
-        l_tag = missing
-        yield u'\n                                   </ul>\n                              </div>\n                              <div id="WhosOnline" class="Box">\n                                  <h4>Who\'s Online (1)</h4>\n                                  <ul class="PanelInfo">\n                                      <li>\n                                            <strong >\n                                                <a href="/index.php?p=/profile/1/zhaozhou">zhaozhou</a>\n                                            </strong>\n                                            10:53PM\n                                      </li>\n                                  </ul>\n                              </div>\n                         '
-    yield u'\n                     '
+    yield u'\n                         %s\n                     ' % (
+        escape(context.call(l_render_forum_panel)), 
+    )
 
 blocks = {'content': block_content, 'foot': block_foot, 'javascript': block_javascript, 'panel': block_panel}
-debug_info = '1=8&2=11&7=20&16=26&17=29&18=32&59=34&3=38&22=42&23=48&24=51&34=55&40=57&41=60&42=64&56=65'
+debug_info = '1=8&2=11&3=17&8=26&17=32&18=35&19=38&27=40&4=44&23=48&24=52'

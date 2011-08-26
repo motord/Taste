@@ -29,6 +29,7 @@ view_groups = [
     Rule('/data/tags', endpoint='data.tags', view='tasteofhome.data.tags'),
     Rule('/data/forum', endpoint='data.forum', view='tasteofhome.data.forum'),
     Rule('/data/create_admin', endpoint='data.create_admin', view='tasteofhome.data.create_admin'),
+    Rule('/data/fix', endpoint='data.fix', view='tasteofhome.data.fix'),
     Rule('/tag/<key>', endpoint='tag', view='tasteofhome.views.tag'),
     Rule('/course/<key>', endpoint='course', view='tasteofhome.views.course'),
     Rule('/new/course/<tag_key>', endpoint='new.course', view='tasteofhome.views.new_course'),

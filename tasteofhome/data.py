@@ -44,13 +44,13 @@ tasteofhome.tags
 """
 
 from kay.utils import render_to_response
-from models import Tag
+from models import Tag, TagCoursesIndex
 from google.appengine.ext import db
 from google.appengine.ext import deferred
 
 def tags(request):
     deferred.defer(populate_tags)
-    return  render_to_response('tasteofhome/index.html', {'message': 'deferred tags population'})
+    return  render_to_response('tasteofhome/workshop.html', {'message': 'deferred tags population'})
 
 def populate_tags():
     tag=Tag(name=u'北京市', depth=1)
@@ -1558,7 +1558,7 @@ def populate_tags():
 
 def forum(request):
     deferred.defer(populate_forum)
-    return  render_to_response('tasteofhome/index.html', {'message': 'deferred forum population'})
+    return  render_to_response('tasteofhome/workshop.html', {'message': 'deferred forum population'})
 
 def populate_forum():
     tag=Tag(name=u'论坛', depth=99)
@@ -1567,4 +1567,14 @@ def populate_forum():
 
 def create_admin(request):
     from yan.auth import create_new_user
-    create_new_user('motor@samdeha.com', 'motor', 'omerta', is_admin=True)
+    create_new_user('motor@samdeha.com', 'motor', '######', is_admin=True)
+    return  render_to_response('tasteofhome/workshop', {'message': 'admin created'})
+
+def fix(request):
+    deferred.defer(fix_data)
+    return  render_to_response('tasteofhome/workshop', {'message': 'deferred data fix'})
+
+def fix_data():
+    for tagCoursesIndex in TagCoursesIndex.all():
+        tagCoursesIndex.depth=100
+        tagCoursesIndex.put()
