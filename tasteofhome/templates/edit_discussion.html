@@ -1,10 +1,35 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends "tasteofhome/base.html" %}
+        {% block javascript %}
 
-</body>
-</html>
+        {% endblock %}
+                     {% block body_class %} Vanilla Post discussion {% endblock %}
+
+                     {% block content %}
+                        <div id="DiscussionForm">
+                           <h2>编辑讨论</h2>
+                           {% call form() %}
+                        <div>
+                            <div>
+                               {{ form['owner'].label()|safe }}
+                               {{ form['owner']()|safe }}
+                            </div>
+                            {{ form['title'].label()|safe }}
+                            {{ form['title']()|safe }}
+                            <div class="Category">
+                                {{ form['tag'].label()|safe }}
+                                {{ form['tag']()|safe }}
+                            </div>
+                            {{ form['content']()|safe }}
+                        {{ form.default_actions()|safe }}
+                        </div>
+                        {% endcall %}
+                        </div>
+                     {% endblock %}
+
+                     {% block panel %}
+
+                     {% endblock %}
+
+              {% block foot %}
+
+              {% endblock %}

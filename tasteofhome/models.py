@@ -20,7 +20,7 @@ class Course(db.Model):
     def update_view_count(self, n):
         courseMessagesIndex=CourseMessagesIndex.gql("WHERE ANCESTOR IS :1", self).get()
         if not courseMessagesIndex:
-            courseMessagesIndex=courseMessagesIndex(parent=self)
+            courseMessagesIndex=CourseMessagesIndex(parent=self)
         courseMessagesIndex.n_views += n
         courseMessagesIndex.put()
 
@@ -33,7 +33,7 @@ class Course(db.Model):
     def add_message(self, message):
         courseMessagesIndex=CourseMessagesIndex.gql("WHERE ANCESTOR IS :1", self).get()
         if not courseMessagesIndex:
-            courseMessagesIndex=courseMessagesIndex(parent=self)
+            courseMessagesIndex=CourseMessagesIndex(parent=self)
         courseMessagesIndex.n_messages += 1
         courseMessagesIndex.put()
 
@@ -63,7 +63,7 @@ class Tag(db.Model):
     def add_course(self, course):
         tagCoursesIndex=TagCoursesIndex.gql("WHERE ANCESTOR IS :1 AND depth = :2", self, self.depth).get()
         if not tagCoursesIndex:
-            tagCoursesIndex=TagCoursesIndex(parent=self)
+            tagCoursesIndex=TagCoursesIndex(parent=self, depth=self.depth)
         tagCoursesIndex.n_courses += 1
         tagCoursesIndex.courses.append(course.key())
         tagCoursesIndex.put()
@@ -87,6 +87,9 @@ class UserMouthsIndex(db.Model):
 
 class UserHandsIndex(db.Model):
     hands=db.ListProperty(db.Key)
+
+class UserBookmarksIndex(db.Model):
+    bookmarks=db.ListProperty(db.Key)
 
 class Feast(db.Model):
     schedule=db.DateTimeProperty()

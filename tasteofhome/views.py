@@ -31,9 +31,11 @@ from forms import CourseForm, DiscussionForm, MessageForm
 from google.appengine.ext import db
 from lib import recaptcha
 from kay.conf import settings
+from kay.cache.decorators import no_cache, cache_page
 from yan.auth.decorators import login_required
 from werkzeug import redirect
-from werkzeug.exceptions import NotFound
+from forms import CRUD
+from decorators import with_tag, with_course, update_view_count
 
 # Create your views here.
 
@@ -51,29 +53,10 @@ def register(request):
                                                                                            use_ssl = False,
                                                                                            error = None)})
 
-def course(request, key):
-  course=db.get(key)
+@with_course
+@update_view_count(1)
+def course(request, course):
   return render_to_response('tasteofhome/course.html', {'course': course})
-
-def with_course(fun):
-    def decorate(self, course_key=None):
-        course=None
-        if course_key:
-            course=db.get(course_key)
-            if not course:
-                raise NotFound
-        return fun(self, course)
-    return decorate
-
-def with_tag(fun):
-    def decorate(self, tag_key=None):
-        tag=None
-        if tag_key:
-            tag=db.get(tag_key)
-            if not tag:
-                raise NotFound
-        return fun(self, tag)
-    return decorate
 
 @login_required
 @with_tag
@@ -81,50 +64,48 @@ def new_course(request, tag):
   form=CourseForm(initial={'tag':tag, 'owner':request.user})
   if request.method == 'POST':
       if form.validate(request.form):
+          form.save(owner=user, crud=CRUD.Create)
           return redirect('')
   return render_to_response('tasteofhome/new_course.html', {'form': form.as_widget()})
 
 @login_required
 @with_course
 def edit_course(request, course):
-  form=CourseForm(instance=course)
+  form=CourseForm(instance=course, initial={'owner': course.owner})
   if request.method == 'POST':
       if form.validate(request.form):
-          if request.user.is_authenticated():
-              user=request.user
-          else:
-              user=None
-          new_course=form.save(owner=user)
+          form.save(owner=user, crud=CRUD.Update)
           return
-  return render_to_response('tasteofhome/edit_course.html', {'tag': tag})
+  return render_to_response('tasteofhome/edit_course.html', {'tag': tag, 'form': form})
 
 
-
-def forum(request):
+@cache_page(60)
+def forum_discussions(request):
   discussions=Course.all()
   tags=Tag.gql("WHERE depth = :1", 100)
-  return render_to_response('tasteofhome/forum.html', {'discussions': discussions, 'tags': tags})
+  return render_to_response('tasteofhome/discussions.html', {'discussions': discussions, 'tags': tags})
 
 @login_required
 def new_discussion(request):
   form=DiscussionForm(initial={'owner':request.user})
   if request.method == 'POST':
       if form.validate(request.form):
-          form.save(create=True)
-          return redirect(url_for('tasteofhome/forum'))
+          form.save(crud=CRUD.Create)
+          return redirect(url_for('tasteofhome/forum.discussions'))
   return render_to_response('tasteofhome/new_discussion.html', {'form': form.as_widget()})
 
 @login_required
 @with_course
 def edit_discussion(request, course):
-  form=DiscussionForm(instance=course)
+  form=DiscussionForm(instance=course, initial={'owner': course.owner})
   if request.method == 'POST':
       if form.validate(request.form):
-          new_course=form.save(owner=user)
+          form.save(owner=user, crud=CRUD.Update)
           return
-  return render_to_response('tasteofhome/edit_discussion.html', {'tag': tag})
+  return render_to_response('tasteofhome/edit_discussion.html', {'form': form.as_widget()})
 
 @with_course
+@update_view_count(1)
 def forum_discussion(request, course):
     discussion=course
     tags=Tag.gql("WHERE depth = :1", 100)
@@ -134,7 +115,7 @@ def forum_discussion(request, course):
 @with_tag
 def forum_category(request, tag):
   discussions=Course.gql("WHERE ANCESTOR IS :1", tag)
-  return render_to_response('tasteofhome/forum.html', {'discussions': discussions})
+  return render_to_response('tasteofhome/discussions.html', {'discussions': discussions})
 
 def user(request, user_name):
     user=User.gql("WHERE user_name = :1", user_name).get()

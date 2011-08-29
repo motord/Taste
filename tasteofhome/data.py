@@ -1568,11 +1568,11 @@ def populate_forum():
 def create_admin(request):
     from yan.auth import create_new_user
     create_new_user('motor@samdeha.com', 'motor', '######', is_admin=True)
-    return  render_to_response('tasteofhome/workshop', {'message': 'admin created'})
+    return  render_to_response('tasteofhome/workshop.html', {'message': 'admin created'})
 
 def fix(request):
     deferred.defer(fix_data)
-    return  render_to_response('tasteofhome/workshop', {'message': 'deferred data fix'})
+    return  render_to_response('tasteofhome/workshop.html', {'message': 'deferred data fix'})
 
 def fix_data():
     for tagCoursesIndex in TagCoursesIndex.all():

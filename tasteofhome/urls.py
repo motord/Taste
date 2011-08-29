@@ -34,7 +34,7 @@ view_groups = [
     Rule('/course/<key>', endpoint='course', view='tasteofhome.views.course'),
     Rule('/new/course/<tag_key>', endpoint='new.course', view='tasteofhome.views.new_course'),
     Rule('/edit/course/<course_key>', endpoint='edit.course', view='tasteofhome.views.edit_course'),
-    Rule('/forum', endpoint='forum', view='tasteofhome.views.forum'),
+    Rule('/forum/discussions', endpoint='forum.discussions', view='tasteofhome.views.forum_discussions'),
     Rule('/forum/categories/<tag_key>', endpoint='forum.category', view='tasteofhome.views.forum_category'),
     Rule('/forum/discussion/<course_key>', endpoint='discussion', view='tasteofhome.views.forum_discussion'),
     Rule('/forum/new/discussion', endpoint='new.discussion', view='tasteofhome.views.new_discussion'),

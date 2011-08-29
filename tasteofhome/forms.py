@@ -52,6 +52,8 @@ class UserField(Field):
     def convert(self, value):
         return value
 
+class CRUD:
+    Create, Read, Update, Delete = range(4)
 
 class CourseForm(ModelForm):
     title=forms.TextField(required=True, min_length=3, max_length=100, label=_(u'名称'))
@@ -65,7 +67,7 @@ class CourseForm(ModelForm):
         model = Course
         fields = ('title', 'content', 'avatar', 'owner')
 
-    def save(self, commit=True, create=True, **kwargs):
+    def save(self, commit=True, crud=CRUD.Create, **kwargs):
         def create_course():
             tag=self['tag']
             kwargs['parent']=tag
@@ -74,9 +76,9 @@ class CourseForm(ModelForm):
             return course
         def update_course():
             return super(CourseForm, self).save(commit, **kwargs)
-        if create:
+        if crud==CRUD.Create:
             course=db.run_in_transaction(create_course)
-        else:
+        elif crud==CRUD.Update:
             course=db.run_in_transaction(update_course)
         return course
 
@@ -90,7 +92,7 @@ class DiscussionForm(ModelForm):
         model = Course
         fields = ('title', 'content', 'owner')
 
-    def save(self, commit=True, create=True, **kwargs):
+    def save(self, commit=True, crud=CRUD.Create, **kwargs):
         def create_discussion():
             tag=self['tag']
             kwargs['parent']=tag
@@ -99,9 +101,9 @@ class DiscussionForm(ModelForm):
             return discussion
         def update_discussion():
             return super(DiscussionForm, self).save(commit, **kwargs)
-        if create:
+        if crud==CRUD.Create:
             discussion=db.run_in_transaction(create_discussion)
-        else:
+        elif crud==CRUD.Update:
             discussion=db.run_in_transaction(update_discussion)
         return discussion
 
@@ -114,7 +116,7 @@ class MessageForm(ModelForm):
         model = Message
         fields = ('in_reply_to', 'message', 'author')
 
-    def save(self, commit=True, create=True, **kwargs):
+    def save(self, commit=True, crud=CRUD.Create, **kwargs):
         def create_message():
             course=self['course']
             kwargs['parent']=course
@@ -123,8 +125,8 @@ class MessageForm(ModelForm):
             return message
         def update_message():
             return super(MessageForm, self).save(commit, **kwargs)
-        if create:
+        if crud==CRUD.Create:
             message=db.run_in_transaction(create_message)
-        else:
+        elif crud==CRUD.Update:
             message=db.run_in_transaction(update_message)
         return message
