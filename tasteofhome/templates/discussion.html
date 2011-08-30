@@ -28,12 +28,14 @@
                                      <span class="CommentQuote">
                                          <a href="http://vanillaforums.org/post/quote/16949/Discussion_16949">Quote</a>
                                      </span>
+                                     {% if request.user.is_admin %}
                                      <span>
                                          <a href="/forum/edit/discussion/{{ discussion.key() }}" class="EditDiscussion">编辑</a>
                                      </span>
                                      <span>
                                          <a href="/#/forum/delete/discussion/{{ discussion.key() }}" class="DeleteDiscussion">删除讨论</a>
                                      </span>
+                                     {% endif %}
                                      <div class="CommentInfo">
                                         <span>Posts: 7</span>
                                      </div>

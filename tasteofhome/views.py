@@ -35,7 +35,8 @@ from kay.cache.decorators import no_cache, cache_page
 from yan.auth.decorators import login_required
 from werkzeug import redirect
 from forms import CRUD
-from decorators import with_tag, with_course, update_view_count
+from decorators import with_tag, with_course, update_view_count, admin_or_owner_required
+from kay.utils.paginator import Paginator
 
 # Create your views here.
 
@@ -70,6 +71,7 @@ def new_course(request, tag):
 
 @login_required
 @with_course
+@admin_or_owner_required
 def edit_course(request, course):
   form=CourseForm(instance=course, initial={'owner': course.owner})
   if request.method == 'POST':
@@ -81,9 +83,13 @@ def edit_course(request, course):
 
 @cache_page(60)
 def forum_discussions(request):
+  return forum_discussions_page(request, 1)
+
+def forum_discussions_page(request, page):
   discussions=Course.all()
+  p=Paginator(discussions, settings.ITEMS_PER_PAGE)
   tags=Tag.gql("WHERE depth = :1", 100)
-  return render_to_response('tasteofhome/discussions.html', {'discussions': discussions, 'tags': tags})
+  return render_to_response('tasteofhome/discussions.html', {'discussions': discussions, 'tags': tags, 'paginator': p})
 
 @login_required
 def new_discussion(request):
@@ -96,6 +102,7 @@ def new_discussion(request):
 
 @login_required
 @with_course
+@admin_or_owner_required
 def edit_discussion(request, course):
   form=DiscussionForm(instance=course, initial={'owner': course.owner})
   if request.method == 'POST':

@@ -18,6 +18,18 @@
                                 {{ render_discussion_list_item(discussion) }}
                             {% endfor %}
                          </ul>
+                         <div class="P">
+                             <div id="PagerBefore" class="Pager NumberedPager">
+                                 <span class="Previous">‹</span>
+                                 <a href="/discussions/p1" class="Highlight">1</a>
+                                 <a href="/discussions/p2">2</a><a href="/discussions/p3">3</a>
+                                 <a href="/discussions/p4">4</a><a href="/discussions/p5">5</a>
+                                 <a href="/discussions/p6">6</a><a href="/discussions/p7">7</a>
+                                 <span class="Ellipsis">…</span>
+                                 <a href="/discussions/p260">260</a>
+                                 <a href="/discussions/p2" class="Next">›</a>
+                             </div>
+                         </div>
                      {% endblock %}
 
                      {% block panel %}

@@ -54,5 +54,7 @@ REVERSE_PROXIED_DOMAIN='jxw.samdeha.com'
 AUTH_USER_BACKEND='yan.auth.backends.datastore.DatastoreBackendWithReverseProxiedDomainHack'
 AUTH_USER_MODEL = 'tasteofhome.models.User'
 
+ITEMS_PER_PAGE = 20
+
 RECAPTCHA_PUBLIC_KEY='6LdmQ8cSAAAAAFHs5pU2GjGLBRDV0S8Uhe3m9zF7 '
 RECAPTCHA_PRIVATE_KEY='6LdmQ8cSAAAAAMlyVpCA5TjdYzmf_GMxl6fAXtY2'
