@@ -37,16 +37,26 @@ from werkzeug import redirect
 from forms import CRUD
 from decorators import with_tag, with_course, update_view_count, admin_or_owner_required
 from kay.utils.paginator import Paginator
+from google.appengine.api import memcache
 
 # Create your views here.
 
 def index(request):
-  tags=Tag.gql("WHERE depth = :1", 1)
+  tags=memcache.get('tags::1')
+  if tags is None:
+      tags=Tag.gql("WHERE depth = :1", 1)
+      memcache.set('tags::1', tags)
   return render_to_response('tasteofhome/index.html', {'tags': tags})
 
 def tag(request, key):
-  tag=db.get(key)
-  tags=Tag.gql("WHERE ANCESTOR IS :1 AND depth = :2", tag, tag.depth+1)
+  tag=memcache.get(key)
+  if tag is None:
+      tag=db.get(key)
+      memcache.set(key, tag)
+  tags=memcache.get(key+'::tags')
+  if tags is None:
+      tags=Tag.gql("WHERE ANCESTOR IS :1 AND depth = :2", tag, tag.depth+1)
+      memcache.set(key+'::tags', tags)
   return render_to_response('tasteofhome/tag.html', {'tag': tag, 'tags': tags})
 
 def register(request):
@@ -85,11 +95,17 @@ def edit_course(request, course):
 def forum_discussions(request):
   return forum_discussions_page(request, 1)
 
+def forum_categories():
+    categories=memcache.get('forum::categories')
+    if categories is None:
+        categories=Tag.gql("WHERE depth = :1", 100)
+        memcache.set('forum::categories', categories)
+    return categories
+
 def forum_discussions_page(request, page):
   discussions=Course.all()
   p=Paginator(discussions, settings.ITEMS_PER_PAGE)
-  tags=Tag.gql("WHERE depth = :1", 100)
-  return render_to_response('tasteofhome/discussions.html', {'discussions': discussions, 'tags': tags, 'paginator': p})
+  return render_to_response('tasteofhome/discussions.html', {'discussions': discussions, 'categories': forum_categories(), 'paginator': p})
 
 @login_required
 def new_discussion(request):
@@ -117,12 +133,17 @@ def forum_discussion(request, course):
     discussion=course
     tags=Tag.gql("WHERE depth = :1", 100)
     form=MessageForm()
-    return render_to_response('tasteofhome/discussion.html', {'discussion': discussion, 'form':form, 'tags': tags})
+    return render_to_response('tasteofhome/discussion.html', {'discussion': discussion, 'form':form, 'categories': forum_categories()})
 
 @with_tag
 def forum_category(request, tag):
+    return forum_category_page(request, tag, 1)
+
+def forum_category_page(request, tag, page):
   discussions=Course.gql("WHERE ANCESTOR IS :1", tag)
-  return render_to_response('tasteofhome/discussions.html', {'discussions': discussions})
+  tags=Tag.gql("WHERE depth = :1", 100)
+  return render_to_response('tasteofhome/forum_category.html', {'discussions': discussions, 'category':tag, 'categories': forum_categories()})
+
 
 def user(request, user_name):
     user=User.gql("WHERE user_name = :1", user_name).get()

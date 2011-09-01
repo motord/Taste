@@ -45,6 +45,14 @@ CONTEXT_PROCESSORS = (
   'yan.auth.context_processors.login_box',
 )
 
+JINJA2_FILTERS = {
+#    'date': 'django.template.defaultfilters.date',
+#    'time': 'django.template.defaultfilters.time',
+#    'timesince': 'django.template.defaultfilters.timesince',
+#    'timeuntil': 'django.template.defaultfilters.timeuntil',
+    'smartdatetime': 'yan.utils.filters.smartdatetime',
+}
+
 MIDDLEWARE_CLASSES = (
     'kay.sessions.middleware.SessionMiddleware',
     'yan.auth.middleware.AuthenticationMiddleware',

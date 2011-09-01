@@ -13,6 +13,11 @@
                               <li><a href="#/discussions/popular" class="PopularDiscussions">最热</a></li>
                               <li><a href="#/discussions/mine" class="MyDiscussions">我的讨论<span>1</span></a></li>
                            </ul>
+                           <div class="SubTab Breadcrumbs">
+                               <span class="Breadcrumb FirstCrumb">
+                                   <a href="/categories/{{ category.name }}">{{ category.name }}</a>
+                               </span>
+                           </div>
                          </div>
                          <ul class="DataList Discussions">
                             {% for discussion in discussions %}

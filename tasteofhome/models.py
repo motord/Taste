@@ -3,6 +3,7 @@
 
 from google.appengine.ext import db
 from yan.auth.models import DatastoreUser
+from google.appengine.api import memcache
 
 
 # Create your models here.
@@ -17,18 +18,31 @@ class Course(db.Model):
     created=db.DateTimeProperty(auto_now_add=True)
     updated=db.DateTimeProperty(auto_now=True)
 
-    def update_view_count(self, n):
+    def update_view_count_memcache(self, n):
+        memcache.incr(self.key().__str__()+'hits', delta=n)
+
+    def update_view_count(self):
         courseMessagesIndex=CourseMessagesIndex.gql("WHERE ANCESTOR IS :1", self).get()
         if not courseMessagesIndex:
             courseMessagesIndex=CourseMessagesIndex(parent=self)
-        courseMessagesIndex.n_views += n
-        courseMessagesIndex.put()
+        views=memcache.get(self.key().__str__()+'hits')
+        if views is not None:
+            if views>courseMessagesIndex.n_views:
+                courseMessagesIndex.n_views=views
+                courseMessagesIndex.put()
+        memcache.set(self.key().__str__()+'hits', courseMessagesIndex.n_views)
 
     def num_views(self):
-        courseMessagesIndex=CourseMessagesIndex.gql("WHERE ANCESTOR IS :1", self).get()
-        if not courseMessagesIndex:
-            return 0
-        return courseMessagesIndex.n_views
+        views=memcache.get(self.key().__str__()+'hits')
+        if views is not None:
+            return views
+        else:
+            courseMessagesIndex=CourseMessagesIndex.gql("WHERE ANCESTOR IS :1", self).get()
+            if not courseMessagesIndex:
+                memcache.set(self.key().__str__()+'hits', 0)
+                return 0
+            memcache.set(self.key().__str__()+'hits', courseMessagesIndex.n_views)
+            return courseMessagesIndex.n_views
 
     def add_message(self, message):
         courseMessagesIndex=CourseMessagesIndex.gql("WHERE ANCESTOR IS :1", self).get()

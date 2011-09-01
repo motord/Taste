@@ -78,11 +78,11 @@
 {% else %}
     <a href="/forum/new/discussion" class="BigButton NewDiscussion">开始新讨论</a>
      <div class="Box BoxCategories">
-          <h4><a href="/index.php?p=/categories/all">Categories</a></h4>
+          <h4><a href="/forum/categories/all">Categories</a></h4>
           <ul class="PanelInfo PanelCategories">
-             <li class="Active"><span><strong><a href="/index.php?p=/discussions">All Discussions</a></strong><span class="Count">1</span></span></li>
-             {% for tag in tags %}
-             <li class="Depth1"><strong><a href="/index.php?p=/categories/{{ tag.key() }}">{{ tag.name }}</a></strong><span class="Count">{{ tag.num_courses() }}</span></li>
+             <li class="Active"><span><strong><a href="/forum/discussions">All Discussions</a></strong><span class="Count">1</span></span></li>
+             {% for category in categories %}
+             <li class="Depth1"><strong><a href="/forum/categories/{{ category.key() }}">{{ category.name }}</a></strong><span class="Count">{{ category.num_courses() }}</span></li>
              {% endfor %}
           </ul>
      </div>
@@ -99,3 +99,18 @@
      </div>
 {% endif %}
 {%- endmacro %}
+
+{% macro render_pager() -%}
+<div class="P">
+    <div id="PagerBefore" class="Pager NumberedPager">
+        <span class="Previous">‹</span>
+        <a href="/discussions/p1" class="Highlight">1</a>
+        <a href="/discussions/p2">2</a><a href="/discussions/p3">3</a>
+        <a href="/discussions/p4">4</a><a href="/discussions/p5">5</a>
+        <a href="/discussions/p6">6</a><a href="/discussions/p7">7</a>
+        <span class="Ellipsis">…</span>
+        <a href="/discussions/p260">260</a>
+        <a href="/discussions/p2" class="Next">›</a>
+    </div>
+</div>
+{%- endmacro  %}
