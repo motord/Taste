@@ -39,6 +39,10 @@ handlers:
   script: kay/ext/testutils/gaeunit.py
   login: admin
 
+- url: /mapreduce(/.*)?
+  script: mapreduce/main.py
+  login: admin
+
 - url: /.*
   script: kay/main.py
 

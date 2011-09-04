@@ -18,19 +18,8 @@ class Course(db.Model):
     created=db.DateTimeProperty(auto_now_add=True)
     updated=db.DateTimeProperty(auto_now=True)
 
-    def update_view_count_memcache(self, n):
+    def update_view_count(self, n):
         memcache.incr(self.key().__str__()+'hits', delta=n)
-
-    def update_view_count(self):
-        courseMessagesIndex=CourseMessagesIndex.gql("WHERE ANCESTOR IS :1", self).get()
-        if not courseMessagesIndex:
-            courseMessagesIndex=CourseMessagesIndex(parent=self)
-        views=memcache.get(self.key().__str__()+'hits')
-        if views is not None:
-            if views>courseMessagesIndex.n_views:
-                courseMessagesIndex.n_views=views
-                courseMessagesIndex.put()
-        memcache.set(self.key().__str__()+'hits', courseMessagesIndex.n_views)
 
     def num_views(self):
         views=memcache.get(self.key().__str__()+'hits')

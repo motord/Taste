@@ -47,6 +47,7 @@ view_groups = [
     Rule('/user/<user_name>', endpoint='user', view='tasteofhome.views.user'),
     Rule('/termsofservice', endpoint='termsofservice', view='tasteofhome.views.termsofservice'),
     Rule('/robots.txt', endpoint='robots', view='tasteofhome.views.robots'),
+    Rule('/tasks/update_view_count', endpoint='tasks.update_view_count', view='tasteofhome.tasks.update_view_count'),
   )
 ]
 

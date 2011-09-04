@@ -1,0 +1,4 @@
+cron:
+- description: Update view count
+  url: /tasks/update_view_count
+  schedule: every 1 hours

@@ -1,0 +1,15 @@
+mapreduce:
+- name: Update view count
+  params:
+  - name: done_callback
+    value: /done
+  mapper:
+    handler: tasteofhome.mapper.update_view_count
+    input_reader: mapreduce.input_readers.DatastoreInputReader
+    params:
+    - name: entity_kind
+      default: tasteofhome.models.Course
+    - name: processing_rate
+      default: 100
+    - name: shard_count
+      default: 4

@@ -53,10 +53,10 @@ def tag(request, key):
   if tag is None:
       tag=db.get(key)
       memcache.set(key, tag)
-  tags=memcache.get(key+'::tags')
+  tags=memcache.get(key+'::children')
   if tags is None:
       tags=Tag.gql("WHERE ANCESTOR IS :1 AND depth = :2", tag, tag.depth+1)
-      memcache.set(key+'::tags', tags)
+      memcache.set(key+'::children', tags)
   return render_to_response('tasteofhome/tag.html', {'tag': tag, 'tags': tags})
 
 def register(request):

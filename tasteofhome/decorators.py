@@ -40,7 +40,7 @@ def with_tag(fun):
 def update_view_count(n):
     def decorate(fun):
         def wrapped(request, course):
-            course.update_view_count_memcache(n)
+            course.update_view_count(n)
             return fun(request, course)
         return wrapped
     return decorate
