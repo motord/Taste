@@ -75,7 +75,7 @@ def new_course(request, tag):
   form=CourseForm(initial={'tag':tag, 'owner':request.user})
   if request.method == 'POST':
       if form.validate(request.form):
-          form.save(owner=user, crud=CRUD.Create)
+          form.save(crud=CRUD.Create)
           return redirect('')
   return render_to_response('tasteofhome/new_course.html', {'form': form.as_widget()})
 
@@ -86,9 +86,10 @@ def edit_course(request, course):
   form=CourseForm(instance=course, initial={'owner': course.owner})
   if request.method == 'POST':
       if form.validate(request.form):
-          form.save(owner=user, crud=CRUD.Update)
+          form.save(crud=CRUD.Update)
           return
   return render_to_response('tasteofhome/edit_course.html', {'tag': tag, 'form': form})
+
 
 
 @cache_page(60)
@@ -123,7 +124,7 @@ def edit_discussion(request, course):
   form=DiscussionForm(instance=course, initial={'owner': course.owner})
   if request.method == 'POST':
       if form.validate(request.form):
-          form.save(owner=user, crud=CRUD.Update)
+          form.save(crud=CRUD.Update)
           return
   return render_to_response('tasteofhome/edit_discussion.html', {'form': form.as_widget()})
 

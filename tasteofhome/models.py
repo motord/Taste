@@ -10,6 +10,14 @@ from google.appengine.api import memcache
 class User(DatastoreUser):
     avatar=db.BlobProperty()
 
+    def add_tag(self, tag):
+        userTagsIndex=UserTagsIndex.gql("WHERE ANCESTOR IS :1", self).get()
+        if not userTagsIndex:
+            userTagsIndex=UserTagsIndex(parent=self)
+        userTagsIndex.n_tags +=1
+        userTagsIndex.tags.append(tag)
+        userTagsIndex.put()
+
 class Course(db.Model):
     title=db.StringProperty()
     content=db.StringProperty(multiline=True)
@@ -83,6 +91,7 @@ class TagCoursesIndex(db.Model):
     courses=db.ListProperty(db.Key)
 
 class UserTagsIndex(db.Model):
+    n_tags=db.IntegerProperty(default=0)
     tags=db.ListProperty(db.Key)
 
 class UserMouthsIndex(db.Model):
