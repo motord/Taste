@@ -46,7 +46,8 @@ def index(request):
   if tags is None:
       tags=Tag.gql("WHERE depth = :1", 1)
       memcache.set('tags::1', tags)
-  return render_to_response('tasteofhome/index.html', {'tags': tags})
+  marked_tags=request.user.get_tags()
+  return render_to_response('tasteofhome/index.html', {'tags': tags, 'marked_tags': marked_tags})
 
 def tag(request, key):
   tag=memcache.get(key)

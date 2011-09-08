@@ -16,9 +16,9 @@ class User(DatastoreUser):
         if not userTagsIndex:
             userTagsIndex=UserTagsIndex(parent=self)
         userTagsIndex.n_tags +=1
-        userTagsIndex.tags.append(tag)
+        userTagsIndex.tags.append(tag.key())
         userTagsIndex.put()
-        memcache.set(self.key().__str__()+'::tags', userTagsIndex.tags)
+        memcache.set(self.key().__str__()+'::tags', Tag.get(userTagsIndex.tags))
 
     def get_tags(self):
         tags=memcache.get(self.key().__str__()+'::tags')
@@ -38,7 +38,7 @@ class User(DatastoreUser):
         if not userMouthsIndex:
             userMouthsIndex=UserMouthsIndex(parent=self)
         userMouthsIndex.n_mouths +=1
-        userMouthsIndex.mouths.append(course)
+        userMouthsIndex.mouths.append(course.key())
         userMouthsIndex.put()
         memcache.set(self.key().__str__()+'::mouths', userMouthsIndex.mouths)
 
@@ -60,7 +60,7 @@ class User(DatastoreUser):
         if not userHandsIndex:
             userHandsIndex=UserHandsIndex(parent=self)
         userHandsIndex.n_hands +=1
-        userHandsIndex.hands.append(course)
+        userHandsIndex.hands.append(course.key())
         userHandsIndex.put()
         memcache.set(self.key().__str__()+'::hands', userHandsIndex.hands)
 
@@ -82,7 +82,7 @@ class User(DatastoreUser):
         if not userBookmarksIndex:
             userBookmarksIndex=UserBookmarksIndex(parent=self)
         userBookmarksIndex.n_bookmarks +=1
-        userBookmarksIndex.bookmarks.append(message)
+        userBookmarksIndex.bookmarks.append(message.key())
         userBookmarksIndex.put()
         memcache.set(self.key().__str__()+'::bookmarks', userBookmarksIndex.bookmarks)
 
@@ -147,6 +147,7 @@ class Course(db.Model):
         if not courseMessagesIndex:
             courseMessagesIndex=CourseMessagesIndex(parent=self)
         courseMessagesIndex.n_messages += 1
+        courseMessagesIndex.messages.append(message.key())
         courseMessagesIndex.put()
         memcache.set(self.key().__str__()+'::messages', courseMessagesIndex.messages)
 

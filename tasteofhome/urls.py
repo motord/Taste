@@ -36,7 +36,7 @@ view_groups = [
     Rule('/course/<key>/p/<page>', endpoint='course.page', view='tasteofhome.views.course_page'),
     Rule('/new/course/<tag_key>', endpoint='new.course', view='tasteofhome.views.new_course'),
     Rule('/edit/course/<course_key>', endpoint='edit.course', view='tasteofhome.views.edit_course'),
-    Rule('/rpc', endpoint='rpc', view='tasteofhome.rpc.rpc_handler'),
+    Rule('/tag/<tag_key>/markmap', endpoint='rpc', view='tasteofhome.ajax.markmap'),
     Rule('/forum/discussions', endpoint='forum.discussions', view='tasteofhome.views.forum_discussions'),
     Rule('/forum/discussions/p/<page>', endpoint='forum.discussions.page', view='tasteofhome.views.forum_discussions_page'),
     Rule('/forum/categories/<tag_key>', endpoint='forum.category', view='tasteofhome.views.forum_category'),
