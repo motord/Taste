@@ -57,7 +57,8 @@ def tag(request, key):
   if tags is None:
       tags=Tag.gql("WHERE ANCESTOR IS :1 AND depth = :2", tag, tag.depth+1)
       memcache.set(key+'::children', tags)
-  return render_to_response('tasteofhome/tag.html', {'tag': tag, 'tags': tags})
+  marked_tags=request.user.get_tags()
+  return render_to_response('tasteofhome/tag.html', {'tag': tag, 'tags': tags, 'marked_tags': marked_tags})
 
 def register(request):
   return render_to_response('tasteofhome/register.html', {'captcha': recaptcha.displayhtml(public_key = settings.RECAPTCHA_PUBLIC_KEY,

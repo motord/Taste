@@ -3,7 +3,7 @@
         {% block javascript %}
             <script type="text/javascript" src="/media/js/libs/plugins/sammy.template-latest.min.js"></script>
             <script type="text/javascript" src="/media/js/libs/plugins/sammy.json-latest.min.js"></script>
-            <script type="text/javascript" src="/media/js/tag.js?v=2.0.17.21"></script>
+            <script type="text/javascript" src="/media/js/tag.js?v=2.0.17.22"></script>
         {% endblock %}
 
                      {% block content %}
@@ -13,13 +13,13 @@
                              <ul id="actions">
                                  <li>
                                      <div id="marker">
-                                         <form action="#/markmap" method="post" id="markerform">
+                                         <form action="#/markmap" method="post">
                                              <input type="hidden" name="tag_key" value="{{ tag.key() }}" />
-                                             <input type="image" src="/media/images/mapmarker.png" title="你是否会在此处出没？" />
+                                             <input type="image" src="/media/images/mapmarker.png" alt="你是否会在此处出没？" title="你是否会在此处出没？" />
                                          </form>
                                      </div>
                                  </li>
-                                 <li><a title="给这里加一道本地菜" href="/new/course/{{ tag.key() }}"><img class="course" src="/media/images/pixel.png" /></a></li>
+                                 <li><a title="给这里加一道本地菜" href="/new/course/{{ tag.key() }}"><img alt="给这里加一道本地菜" class="course" src="/media/images/pixel.png" /></a></li>
 
                              </ul>
                          </div>

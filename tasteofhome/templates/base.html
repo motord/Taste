@@ -1,3 +1,4 @@
+{% from 'tasteofhome/macros.html' import render_map_box %}
 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-ca">
     <head>
@@ -65,18 +66,13 @@
                             {% else %}
                                  <div class="Box MapBox">
                                      <h4>你出没的地点</h4>
-                                     <ul class="PanelInfo">
-                                         {% for tag in marked_tags %}
-                                             <li>
-                                                 <strong>
-                                                    <a href="/tag/{{ tag.key() }}">{{ tag.name }}</a>
-                                                 </strong>
-                                                 <span class="Count">0</span>
-                                             </li>
-                                         {% endfor %}
+                                     <ul class="PanelInfo" id="map">
+                                         {% if marked_tags %}
+                                            {{ render_map_box(marked_tags) }}
+                                         {% endif %}
                                      </ul>
                                  </div>
-                                 <div class="Box MouthBox">
+                                 <div class="Box MouthBox" id="mouth">
                                      <h4>你想吃的菜</h4>
                                      <ul class="PanelInfo">
                                          {% for course in mouths %}
@@ -91,7 +87,7 @@
                                  </div>
                                  <div class="Box HandBox">
                                      <h4>你会做的菜</h4>
-                                     <ul class="PanelInfo">
+                                     <ul class="PanelInfo" id="hand">
                                          {% for course in hands %}
                                              <li>
                                                  <strong>

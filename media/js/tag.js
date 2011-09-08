@@ -8,7 +8,11 @@
 (function($){
     var app = $.sammy('#marker', function(){
         this.post('#/markmap', function(context){
-            alert(this.params['tag_key']);
+            this.app.swap('');
+            $('#map').append($('<li/>', {
+                html : this.params['tag_key'],
+                'class' : 'Depth1'
+            }));
         });
     });
     
