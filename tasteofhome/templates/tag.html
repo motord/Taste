@@ -3,7 +3,7 @@
         {% block javascript %}
             <script type="text/javascript" src="/media/js/libs/plugins/sammy.template-latest.min.js"></script>
             <script type="text/javascript" src="/media/js/libs/plugins/sammy.json-latest.min.js"></script>
-            <script type="text/javascript" src="/media/js/tag.js?v=2.0.17.11"></script>
+            <script type="text/javascript" src="/media/js/tag.js?v=2.0.17.21"></script>
         {% endblock %}
 
                      {% block content %}
@@ -13,10 +13,9 @@
                              <ul id="actions">
                                  <li>
                                      <div id="marker">
-                                         <form action="/tag/{{ tag.key() }}/#markmap" method="post">
-                                             <a title="你是否会在此处出没？" href="" onclick="this.parentNode.submit();return false;">
-                                                 <img class="map" src="/media/images/pixel.png" />
-                                             </a>
+                                         <form action="#/markmap" method="post" id="markerform">
+                                             <input type="hidden" name="tag_key" value="{{ tag.key() }}" />
+                                             <input type="image" src="/media/images/mapmarker.png" title="你是否会在此处出没？" />
                                          </form>
                                      </div>
                                  </li>

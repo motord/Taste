@@ -21,6 +21,7 @@ from kay.utils.forms import Field, Widget, html
 from werkzeug import escape
 from kay.utils.datastructures import missing
 from google.appengine.ext import db
+from google.appengine.api import memcache
 
 class LabelWidget(Widget):
     def __init__(self, field, name, value, all_errors):
@@ -80,6 +81,7 @@ class CourseForm(ModelForm):
             course=db.run_in_transaction(create_course)
         elif crud==CRUD.Update:
             course=db.run_in_transaction(update_course)
+        memcache.set(course.key(), course)
         return course
 
 
@@ -105,6 +107,7 @@ class DiscussionForm(ModelForm):
             discussion=db.run_in_transaction(create_discussion)
         elif crud==CRUD.Update:
             discussion=db.run_in_transaction(update_discussion)
+        memcache.set(discussion.key(), discussion)
         return discussion
 
 class MessageForm(ModelForm):
@@ -129,4 +132,5 @@ class MessageForm(ModelForm):
             message=db.run_in_transaction(create_message)
         elif crud==CRUD.Update:
             message=db.run_in_transaction(update_message)
+        memcache.set(message.key(), message)
         return message

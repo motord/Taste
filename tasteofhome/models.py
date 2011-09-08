@@ -9,6 +9,7 @@ from google.appengine.api import memcache
 # Create your models here.
 class User(DatastoreUser):
     avatar=db.BlobProperty()
+    mobile=db.StringProperty()
 
     def add_tag(self, tag):
         userTagsIndex=UserTagsIndex.gql("WHERE ANCESTOR IS :1", self).get()

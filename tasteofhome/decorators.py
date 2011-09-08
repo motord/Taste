@@ -13,6 +13,7 @@ from google.appengine.ext import db
 from werkzeug.exceptions import NotFound, Forbidden
 from functools import update_wrapper
 from werkzeug import redirect
+from google.appengine.api import memcache
 
 from kay.utils.decorators import auto_adapt_to_methods
 from kay.utils import local
@@ -21,9 +22,12 @@ def with_course(fun):
     def decorate(request, course_key=None):
         course=None
         if course_key:
-            course=db.get(course_key)
+            course=memcache.get(course_key)
             if not course:
-                raise NotFound
+                course=db.get(course_key)
+                if not course:
+                    raise NotFound
+                memcache.set(course_key, course)
         return fun(request, course)
     return decorate
 
@@ -31,9 +35,12 @@ def with_tag(fun):
     def decorate(request, tag_key=None):
         tag=None
         if tag_key:
-            tag=db.get(tag_key)
+            tag=memcache.get(tag_key)
             if not tag:
-                raise NotFound
+                tag=db.get(tag_key)
+                if not tag:
+                    raise NotFound
+                memcache.set(tag_key, tag)
         return fun(request, tag)
     return decorate
 

@@ -7,8 +7,8 @@
  */
 (function($){
     var app = $.sammy('#marker', function(){
-        this.post('/tag/:key/#markmap', function(context){
-            alert(this.params['key']);
+        this.post('#/markmap', function(context){
+            alert(this.params['tag_key']);
         });
     });
     
