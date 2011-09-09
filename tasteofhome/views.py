@@ -46,7 +46,10 @@ def index(request):
   if tags is None:
       tags=Tag.gql("WHERE depth = :1", 1)
       memcache.set('tags::1', tags)
-  marked_tags=request.user.get_tags()
+  if request.user.is_anonymous():
+      marked_tags=None
+  else:
+      marked_tags=request.user.get_tags()
   return render_to_response('tasteofhome/index.html', {'tags': tags, 'marked_tags': marked_tags})
 
 def tag(request, key):
@@ -58,7 +61,10 @@ def tag(request, key):
   if tags is None:
       tags=Tag.gql("WHERE ANCESTOR IS :1 AND depth = :2", tag, tag.depth+1)
       memcache.set(key+'::children', tags)
-  marked_tags=request.user.get_tags()
+  if request.user.is_anonymous():
+      marked_tags=None
+  else:
+      marked_tags=request.user.get_tags()
   return render_to_response('tasteofhome/tag.html', {'tag': tag, 'tags': tags, 'marked_tags': marked_tags})
 
 def register(request):

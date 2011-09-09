@@ -3,7 +3,15 @@
         {% block javascript %}
             <script type="text/javascript" src="/media/js/libs/plugins/sammy.template-latest.min.js"></script>
             <script type="text/javascript" src="/media/js/libs/plugins/sammy.json-latest.min.js"></script>
-            <script type="text/javascript" src="/media/js/tag.js?v=2.0.17.22"></script>
+            <script type="text/javascript" src="/media/js/tag.js?v=2.0.17.29"></script>
+            <script type="text/html" id="tag_tmpl" data-engine="template">
+                <li class="Depth1">
+                    <strong>
+                       <a href="/tag/<%= tag.key %>"><%= tag.name %></a>
+                    </strong>
+                    <span class="Count">0</span>
+                </li>
+            </script>
         {% endblock %}
 
                      {% block content %}

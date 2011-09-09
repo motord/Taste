@@ -51,6 +51,7 @@ JINJA2_FILTERS = {
 #    'timesince': 'django.template.defaultfilters.timesince',
 #    'timeuntil': 'django.template.defaultfilters.timeuntil',
     'smartdatetime': 'yan.utils.filters.smartdatetime',
+    'nl2br': 'kay.utils.filters.nl2br',
 }
 
 MIDDLEWARE_CLASSES = (

@@ -7,12 +7,13 @@
  */
 (function($){
     var app = $.sammy('#marker', function(){
+        this.use('Template');
+
         this.post('#/markmap', function(context){
-            this.app.swap('');
-            $('#map').append($('<li/>', {
-                html : this.params['tag_key'],
-                'class' : 'Depth1'
-            }));
+            $.post('markmap', function(tag){
+                context.app.swap('');
+                context.render($('#tag_tmpl'), {tag: tag}).appendTo($('#map'));
+            });
         });
     });
     

@@ -15,10 +15,11 @@ class User(DatastoreUser):
         userTagsIndex=UserTagsIndex.gql("WHERE ANCESTOR IS :1", self).get()
         if not userTagsIndex:
             userTagsIndex=UserTagsIndex(parent=self)
-        userTagsIndex.n_tags +=1
-        userTagsIndex.tags.append(tag.key())
-        userTagsIndex.put()
-        memcache.set(self.key().__str__()+'::tags', Tag.get(userTagsIndex.tags))
+        if userTagsIndex.tags.count(tag.key())==0:
+            userTagsIndex.n_tags +=1
+            userTagsIndex.tags.append(tag.key())
+            userTagsIndex.put()
+            memcache.set(self.key().__str__()+'::tags', Tag.get(userTagsIndex.tags))
 
     def get_tags(self):
         tags=memcache.get(self.key().__str__()+'::tags')
@@ -33,14 +34,27 @@ class User(DatastoreUser):
             memcache.set(self.key().__str__()+'::tags', tags)
             return tags
 
+    def remove_tag(self, tag):
+        userTagsIndex=UserTagsIndex.gql("WHERE ANCESTOR IS :1", self).get()
+        if not userTagsIndex:
+            userTagsIndex=UserTagsIndex(parent=self)
+        try:
+            userTagsIndex.tags.remove(tag.key())
+            userTagsIndex.n_tags -=1
+            userTagsIndex.put()
+            memcache.set(self.key().__str__()+'::tags', Tag.get(userTagsIndex.tags))
+        except ValueError:
+            raise ValueError('%s not in %s\'s tags', (tag, self))
+
     def add_mouth(self, course):
         userMouthsIndex=UserMouthsIndex.gql("WHERE ANCESTOR IS :1", self).get()
         if not userMouthsIndex:
             userMouthsIndex=UserMouthsIndex(parent=self)
-        userMouthsIndex.n_mouths +=1
-        userMouthsIndex.mouths.append(course.key())
-        userMouthsIndex.put()
-        memcache.set(self.key().__str__()+'::mouths', userMouthsIndex.mouths)
+        if userMouthsIndex.mouths.count(course.key())==0:
+            userMouthsIndex.n_mouths +=1
+            userMouthsIndex.mouths.append(course.key())
+            userMouthsIndex.put()
+            memcache.set(self.key().__str__()+'::mouths', userMouthsIndex.mouths)
 
     def get_mouths(self):
         mouths=memcache.get(self.key().__str__()+'::mouths')
@@ -55,14 +69,27 @@ class User(DatastoreUser):
             memcache.set(self.key().__str__()+'::mouths', mouths)
             return mouths
 
+    def remove_mouth(self, mouth):
+        userMouthsIndex=UserMouthsIndex.gql("WHERE ANCESTOR IS :1", self).get()
+        if not userMouthsIndex:
+            userMouthsIndex=UserMouthsIndex(parent=self)
+        try:
+            userMouthsIndex.mouths.remove(mouth.key())
+            userMouthsIndex.n_mouths -=1
+            userMouthsIndex.put()
+            memcache.set(self.key().__str__()+'::mouths', Course.get(userMouthsIndex.mouths))
+        except ValueError:
+            raise ValueError('%s not in %s\'s mouths', (mouth, self))
+
     def add_hand(self, course):
         userHandsIndex=UserHandsIndex.gql("WHERE ANCESTOR IS :1", self).get()
         if not userHandsIndex:
             userHandsIndex=UserHandsIndex(parent=self)
-        userHandsIndex.n_hands +=1
-        userHandsIndex.hands.append(course.key())
-        userHandsIndex.put()
-        memcache.set(self.key().__str__()+'::hands', userHandsIndex.hands)
+        if userHandsIndex.hands.count(course.key())==0:
+            userHandsIndex.n_hands +=1
+            userHandsIndex.hands.append(course.key())
+            userHandsIndex.put()
+            memcache.set(self.key().__str__()+'::hands', userHandsIndex.hands)
 
     def get_hands(self):
         hands=memcache.get(self.key().__str__()+'::hands')
@@ -77,14 +104,27 @@ class User(DatastoreUser):
             memcache.set(self.key().__str__()+'::hands', hands)
             return hands
 
+    def remove_hand(self, hand):
+        userHandsIndex=UserHandsIndex.gql("WHERE ANCESTOR IS :1", self).get()
+        if not userHandsIndex:
+            userHandsIndex=UserHandsIndex(parent=self)
+        try:
+            userHandsIndex.hands.remove(hand.key())
+            userHandsIndex.n_hands -=1
+            userHandsIndex.put()
+            memcache.set(self.key().__str__()+'::hands', Course.get(userHandsIndex.hands))
+        except (ValueError):
+            raise ValueError('%s not in %s\'s hands', (hand, self))
+
     def add_bookmark(self, message):
         userBookmarksIndex=UserBookmarksIndex.gql("WHERE ANCESTOR IS :1", self).get()
         if not userBookmarksIndex:
             userBookmarksIndex=UserBookmarksIndex(parent=self)
-        userBookmarksIndex.n_bookmarks +=1
-        userBookmarksIndex.bookmarks.append(message.key())
-        userBookmarksIndex.put()
-        memcache.set(self.key().__str__()+'::bookmarks', userBookmarksIndex.bookmarks)
+        if userBookmarksIndex.bookmarks.count(message.key())==0:
+            userBookmarksIndex.n_bookmarks +=1
+            userBookmarksIndex.bookmarks.append(message.key())
+            userBookmarksIndex.put()
+            memcache.set(self.key().__str__()+'::bookmarks', userBookmarksIndex.bookmarks)
 
     def get_bookmarks(self):
         bookmarks=memcache.get(self.key().__str__()+'::bookmarks')
@@ -98,6 +138,19 @@ class User(DatastoreUser):
             bookmarks=Message.get(userBookmarksIndex.bookmarks)
             memcache.set(self.key().__str__()+'::bookmarks', bookmarks)
             return bookmarks
+
+    def remove_bookmark(self, bookmark):
+        userBookmarksIndex=UserBookmarksIndex.gql("WHERE ANCESTOR IS :1", self).get()
+        if not userBookmarksIndex:
+            userBookmarksIndex=UserBookmarksIndex(parent=self)
+        try:
+            userBookmarksIndex.bookmarks.remove(bookmark.key())
+            userBookmarksIndex.n_bookmarks -=1
+            userBookmarksIndex.put()
+            memcache.set(self.key().__str__()+'::bookmarks', Message.get(userBookmarksIndex.bookmarks))
+        except (ValueError):
+            raise ValueError('%s not in %s\'s bookmarks', (bookmark, self))
+
 
 class UserTagsIndex(db.Model):
     n_tags=db.IntegerProperty(default=0)
@@ -121,7 +174,7 @@ class UserBookmarksIndex(db.Model):
 
 class Course(db.Model):
     title=db.StringProperty()
-    content=db.StringProperty(multiline=True)
+    content=db.TextProperty()
     avatar=db.BlobProperty()
     owner=db.ReferenceProperty(User)
     created=db.DateTimeProperty(auto_now_add=True)
@@ -245,7 +298,7 @@ class Notification(db.Model):
     
 class Message(db.Model):
     in_reply_to=db.SelfReferenceProperty()
-    message=db.StringProperty()
+    message=db.TextProperty()
     author=db.ReferenceProperty(User)
     created=db.DateTimeProperty(auto_now_add=True)
     updated=db.DateTimeProperty(auto_now=True)
