@@ -20,12 +20,14 @@
                              <h1 class="me"><a href="/tag/{{ tag.key() }}">{{ tag.name }}</a></h1>
                              <ul id="actions">
                                  <li>
+                                     {% if request.user.get_tags().count(tag)==0 %}
                                      <div id="marker">
                                          <form action="#/markmap" method="post">
                                              <input type="hidden" name="tag_key" value="{{ tag.key() }}" />
                                              <input type="image" src="/media/images/mapmarker.png" alt="你是否会在此处出没？" title="你是否会在此处出没？" />
                                          </form>
                                      </div>
+                                     {% endif %}
                                  </li>
                                  <li><a title="给这里加一道本地菜" href="/new/course/{{ tag.key() }}"><img alt="给这里加一道本地菜" class="course" src="/media/images/pixel.png" /></a></li>
 

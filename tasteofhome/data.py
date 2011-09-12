@@ -1570,6 +1570,11 @@ def create_admin(request):
     create_new_user('motor@samdeha.com', 'motor', '######', is_admin=True)
     return  render_to_response('tasteofhome/workshop.html', {'message': 'admin created'})
 
+def create_user(request):
+    from yan.auth import create_new_user
+    create_new_user('zhaozhou@hikerlink.org', 'zhaozhou', '######', is_admin=False)
+    return  render_to_response('tasteofhome/workshop.html', {'message': 'user created'})
+
 def fix(request):
     deferred.defer(fix_data)
     return  render_to_response('tasteofhome/workshop.html', {'message': 'deferred data fix'})

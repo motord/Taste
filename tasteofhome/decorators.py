@@ -55,7 +55,7 @@ def update_view_count(n):
 def admin_or_owner_required(func):
   def inner(request, course, *args, **kwargs):
     if not request.user.is_admin:
-      if not request.user!=course.owner:
+      if not request.user==course.owner:
           if request.user.is_anonymous():
             return redirect(local.app.auth_backend.create_login_url(request.url))
           else:

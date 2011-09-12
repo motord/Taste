@@ -28,7 +28,7 @@
                                      <span class="CommentQuote">
                                          <a href="http://vanillaforums.org/post/quote/16949/Discussion_16949">Quote</a>
                                      </span>
-                                     {% if request.user.is_admin %}
+                                     {% if request.user.is_admin or request.user==discussion.owner %}
                                      <span>
                                          <a href="/forum/edit/discussion/{{ discussion.key() }}" class="EditDiscussion">编辑</a>
                                      </span>
@@ -79,7 +79,7 @@
                                         <textarea id="Form_Body" name="Comment/Body" rows="6" cols="100" class="TextBox" style="overflow-x: hidden; overflow-y: hidden; display: block; "></textarea>
                                     </div>
                                     <div class="Buttons">
-                                        <a href="/forum" class="Back">Back to Discussions</a>
+                                        <a href="/forum/discussions" class="Back">Back to Discussions</a>
                                         <input type="submit" id="Form_PostComment" name="Comment/Post_Comment" value="Post Comment" class="Button CommentButton">
                                     </div>
                                 </div>

@@ -107,7 +107,7 @@ class DiscussionForm(ModelForm):
             discussion=db.run_in_transaction(create_discussion)
         elif crud==CRUD.Update:
             discussion=db.run_in_transaction(update_discussion)
-        memcache.set(discussion.key(), discussion)
+        memcache.set(discussion.key().__str__(), discussion)
         return discussion
 
 class MessageForm(ModelForm):
