@@ -20,11 +20,11 @@
                              <h1 class="me"><a href="/tag/{{ tag.key() }}">{{ tag.name }}</a></h1>
                              <ul id="actions">
                                  <li>
-                                     {% if request.user.get_tags().count(tag)==0 %}
+                                     {% if not request.user.get_tags() or request.user.get_tags().count(tag)==0 %}
                                      <div id="marker">
                                          <form action="#/markmap" method="post">
                                              <input type="hidden" name="tag_key" value="{{ tag.key() }}" />
-                                             <input type="image" src="/media/images/mapmarker.png" alt="你是否会在此处出没？" title="你是否会在此处出没？" />
+                                             <input type="image" src="/media/images/mapmarker.png" alt="你当下是否在此居住？" title="你当下是否在此居住？" />
                                          </form>
                                      </div>
                                      {% endif %}

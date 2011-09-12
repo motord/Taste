@@ -87,7 +87,7 @@ class CourseForm(ModelForm):
 
 class DiscussionForm(ModelForm):
     title=forms.TextField(required=True, min_length=3, max_length=100, label=_(u'讨论主题'))
-    content=forms.TextField(required=True, min_length=3, max_length=1000, label=_(u'内容'))
+    content=forms.TextField(required=True, min_length=3, max_length=1000, label=_(u'内容'), widget=forms.Textarea)
     owner=UserField(required=True, label=_(u'楼主'))
     tag=forms.ModelField(model=Tag, required=True, label=_(u'分类'), query=Tag.all().filter('depth =',100))
     class Meta:
