@@ -20,26 +20,31 @@ class User(DatastoreUser):
             userTagsIndex.tags.append(tag.key())
             userTagsIndex.put()
             memcache.set(self.key().__str__()+'::tags', Tag.get(userTagsIndex.tags))
-        def add_course_tag(user, tag):
-            for course in user.get_mouths():
+        deferred.defer(self.add_course_tag, tag)
+
+    def add_course_tag(self, tag):
+        mouths=self.get_mouths()
+        if mouths:
+            for course in mouths:
                 courseUsersIndex=CourseUsersIndex.gql("WHERE ANCESTOR IS :1 AND tag = :2", course, tag)
                 if not courseUsersIndex:
                     courseUsersIndex=CourseUsersIndex(parent=course, tag=tag)
-                if courseUsersIndex.mouths.count(user.key())==0:
+                if courseUsersIndex.mouths.count(self.key())==0:
                     courseUsersIndex.n_mouths +=1
-                    courseUsersIndex.mouths.append(user.key())
+                    courseUsersIndex.mouths.append(self.key())
                     courseUsersIndex.put()
                     memcache.set(course.key().__str__()+'::'+tag.key().__str__()+'::mouths', User.get(courseUsersIndex.mouths))
-            for course in user.get_hands():
+        hands=self.get_hands()
+        if hands:
+            for course in hands:
                 courseUsersIndex=CourseUsersIndex.gql("WHERE ANCESTOR IS :1 AND tag = :2", course, tag)
                 if not courseUsersIndex:
                     courseUsersIndex=CourseUsersIndex(parent=course, tag=tag)
-                if courseUsersIndex.hands.count(user.key())==0:
+                if courseUsersIndex.hands.count(self.key())==0:
                     courseUsersIndex.n_hands +=1
-                    courseUsersIndex.hands.append(user.key())
+                    courseUsersIndex.hands.append(self.key())
                     courseUsersIndex.put()
                     memcache.set(course.key().__str__()+'::'+tag.key().__str__()+'::hands', User.get(courseUsersIndex.hands))
-        deferred.defer(add_course_tag, self, tag)
 
     def get_tags(self):
         tags=memcache.get(self.key().__str__()+'::tags')
@@ -65,30 +70,35 @@ class User(DatastoreUser):
             memcache.set(self.key().__str__()+'::tags', Tag.get(userTagsIndex.tags))
         except ValueError:
             raise ValueError('%s not in %s\'s tags', (tag, self))
-        def remove_course_tag(user, tag):
-            for course in user.get_mouths():
+        deferred.defer(self.remove_course_tag, tag)
+
+    def remove_course_tag(self, tag):
+        mouths=self.get_mouths()
+        if mouths:
+            for course in mouths:
                 courseUsersIndex=CourseUsersIndex.gql("WHERE ANCESTOR IS :1 AND tag = :2", course, tag)
                 if not courseUsersIndex:
                     courseUsersIndex=CourseUsersIndex(parent=course, tag=tag)
                 try:
-                    courseUsersIndex.mouths.remove(user.key())
+                    courseUsersIndex.mouths.remove(self.key())
                     courseUsersIndex.n_mouths -=1
                     courseUsersIndex.put()
                     memcache.set(course.key().__str__()+'::'+tag.key().__str__()+'::mouths', User.get(courseUsersIndex.mouths))
                 except ValueError:
-                    raise ValueError('%s not in %s\'s mouths', (user, course))
-            for course in user.get_hands():
+                    raise ValueError('%s not in %s\'s mouths', (self, course))
+        hands=self.get_hands()
+        if hands:
+            for course in hands:
                 courseUsersIndex=CourseUsersIndex.gql("WHERE ANCESTOR IS :1 AND tag = :2", course, tag)
                 if not courseUsersIndex:
                     courseUsersIndex=CourseUsersIndex(parent=course, tag=tag)
                 try:
-                    courseUsersIndex.hands.remove(user.key())
+                    courseUsersIndex.hands.remove(self.key())
                     courseUsersIndex.n_hands -=1
                     courseUsersIndex.put()
                     memcache.set(course.key().__str__()+'::'+tag.key().__str__()+'::hands', User.get(courseUsersIndex.hands))
                 except ValueError:
-                    raise ValueError('%s not in %s\'s hands', (user, course))
-        deferred.defer(remove_course_tag, self, tag)
+                    raise ValueError('%s not in %s\'s hands', (self, course))
 
     def add_mouth(self, course):
         userMouthsIndex=UserMouthsIndex.gql("WHERE ANCESTOR IS :1", self).get()
@@ -99,17 +109,20 @@ class User(DatastoreUser):
             userMouthsIndex.mouths.append(course.key())
             userMouthsIndex.put()
             memcache.set(self.key().__str__()+'::mouths', userMouthsIndex.mouths)
-        def add_course_mouth(user, course):
-            for tag in user.get_tags():
+        deferred.defer(self.add_course_mouth, course)
+
+    def add_course_mouth(self, course):
+        tags=self.get_tags()
+        if tags:
+            for tag in tags:
                 courseUsersIndex=CourseUsersIndex.gql("WHERE ANCESTOR IS :1 AND tag = :2", course, tag)
                 if not courseUsersIndex:
                     courseUsersIndex=CourseUsersIndex(parent=course, tag=tag)
-                if courseUsersIndex.mouths.count(user.key())==0:
+                if courseUsersIndex.mouths.count(self.key())==0:
                     courseUsersIndex.n_mouths +=1
-                    courseUsersIndex.mouths.append(user.key())
+                    courseUsersIndex.mouths.append(self.key())
                     courseUsersIndex.put()
                     memcache.set(course.key().__str__()+'::'+tag.key().__str__()+'::mouths', User.get(courseUsersIndex.mouths))
-        deferred.defer(add_course_mouth, self, course)
 
     def get_mouths(self):
         mouths=memcache.get(self.key().__str__()+'::mouths')
@@ -135,19 +148,22 @@ class User(DatastoreUser):
             memcache.set(self.key().__str__()+'::courses', Course.get(userMouthsIndex.courses))
         except ValueError:
             raise ValueError('%s not in %s\'s courses', (course, self))
-        def remove_course_mouth(user, course):
-            for tag in user.get_tags():
+        deferred.defer(self.remove_course_mouth, course)
+
+    def remove_course_mouth(self, course):
+        tags=self.get_tags()
+        if tags:
+            for tag in tags:
                 courseUsersIndex=CourseUsersIndex.gql("WHERE ANCESTOR IS :1 AND tag = :2", course, tag)
                 if not courseUsersIndex:
                     courseUsersIndex=CourseUsersIndex(parent=course, tag=tag)
                 try:
-                    courseUsersIndex.mouths.remove(user.key())
+                    courseUsersIndex.mouths.remove(self.key())
                     courseUsersIndex.n_mouths -=1
                     courseUsersIndex.put()
                     memcache.set(course.key().__str__()+'::'+tag.key().__str__()+'::mouths', User.get(courseUsersIndex.mouths))
                 except ValueError:
-                    raise ValueError('%s not in %s\'s courses', (user, course))
-        deferred.defer(remove_course_mouth, self, course)
+                    raise ValueError('%s not in %s\'s courses', (self, course))
 
     def add_hand(self, course):
         userHandsIndex=UserHandsIndex.gql("WHERE ANCESTOR IS :1", self).get()
@@ -158,17 +174,20 @@ class User(DatastoreUser):
             userHandsIndex.hands.append(course.key())
             userHandsIndex.put()
             memcache.set(self.key().__str__()+'::hands', userHandsIndex.hands)
-        def add_course_hand(user, course):
-            for tag in user.get_tags():
+        deferred.defer(self.add_course_hand, course)
+
+    def add_course_hand(self, course):
+        tags=self.get_tags()
+        if tags:
+            for tag in tags:
                 courseUsersIndex=CourseUsersIndex.gql("WHERE ANCESTOR IS :1 AND tag = :2", course, tag)
                 if not courseUsersIndex:
                     courseUsersIndex=CourseUsersIndex(parent=course, tag=tag)
-                if courseUsersIndex.hands.count(user.key())==0:
+                if courseUsersIndex.hands.count(self.key())==0:
                     courseUsersIndex.n_hands +=1
-                    courseUsersIndex.hands.append(user.key())
+                    courseUsersIndex.hands.append(self.key())
                     courseUsersIndex.put()
                     memcache.set(course.key().__str__()+'::'+tag.key().__str__()+'::hands', User.get(courseUsersIndex.hands))
-        deferred.defer(add_course_hand, self, course)
 
     def get_hands(self):
         hands=memcache.get(self.key().__str__()+'::hands')
@@ -194,19 +213,22 @@ class User(DatastoreUser):
             memcache.set(self.key().__str__()+'::hands', Course.get(userHandsIndex.hands))
         except (ValueError):
             raise ValueError('%s not in %s\'s hands', (course, self))
-        def remove_course_hand(user, course):
-            for tag in user.get_tags():
+        deferred.defer(self.remove_course_hand, course)
+
+    def remove_course_hand(self, course):
+        tags=self.get_tags()
+        if tags:
+            for tag in tags:
                 courseUsersIndex=CourseUsersIndex.gql("WHERE ANCESTOR IS :1 AND tag = :2", course, tag)
                 if not courseUsersIndex:
                     courseUsersIndex=CourseUsersIndex(parent=course, tag=tag)
                 try:
-                    courseUsersIndex.hands.remove(user.key())
+                    courseUsersIndex.hands.remove(self.key())
                     courseUsersIndex.n_hands -=1
                     courseUsersIndex.put()
                     memcache.set(course.key().__str__()+'::'+tag.key().__str__()+'::hands', User.get(courseUsersIndex.hands))
                 except ValueError:
-                    raise ValueError('%s not in %s\'s hands', (user, course))
-        deferred.defer(remove_course_hand, self, course)
+                    raise ValueError('%s not in %s\'s hands', (self, course))
 
     def add_bookmark(self, message):
         userBookmarksIndex=UserBookmarksIndex.gql("WHERE ANCESTOR IS :1", self).get()

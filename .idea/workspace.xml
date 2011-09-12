@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="22aeaa2d-18f3-4243-a5c7-cfec15869979" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/forms.py" afterPath="$PROJECT_DIR$/tasteofhome/forms.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/models.py" afterPath="$PROJECT_DIR$/tasteofhome/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/templates/base.html" afterPath="$PROJECT_DIR$/tasteofhome/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasteofhome/templates/tag.html" afterPath="$PROJECT_DIR$/tasteofhome/templates/tag.html" />
     </list>
     <ignored path="jiaxiangwei.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,7 +29,7 @@
       <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tasteofhome/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="454" column="46" selection-start="19824" selection-end="19824" vertical-scroll-proportion="0.84635085">
+            <state line="477" column="0" selection-start="20099" selection-end="20099" vertical-scroll-proportion="9.103713">
               <folding />
             </state>
           </provider>
@@ -97,6 +94,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Favorites" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -114,97 +113,9 @@
               <option name="myItemId" value="jiaxiangwei" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jiaxiangwei" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jiaxiangwei" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jiaxiangwei" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jiaxiangwei" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jiaxiangwei" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="auth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jiaxiangwei" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jiaxiangwei" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasteofhome" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jiaxiangwei" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jiaxiangwei" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasteofhome" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates_compiled" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jiaxiangwei" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jiaxiangwei" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasteofhome" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -222,16 +133,16 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$USER_HOME$/hikerlink.org/livid-v2ex-c4245a4" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="89" />
-    <property name="DefaultHtmlFileTemplate" value="Html" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="974" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="972" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="974" />
+    <property name="DefaultHtmlFileTemplate" value="Html" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="89" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="86" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="App Engine server.jiaxiangwei">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
@@ -421,7 +332,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288835" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.272" sideWeight="0.39563107" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.272" sideWeight="0.5946602" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.272" sideWeight="0.67111653" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39927185" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288835" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288835" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -451,7 +362,7 @@
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="CourseUsersIndex" />
+    <option name="LAST_COMMIT_MESSAGE" value="defer with arguments" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -464,7 +375,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="back to datastore" />
     <MESSAGE value="using keys to query tags" />
     <MESSAGE value="styling and sammy" />
     <MESSAGE value="updated forum page" />
@@ -489,6 +399,7 @@
     <MESSAGE value="map marked" />
     <MESSAGE value="sammy map mark" />
     <MESSAGE value="CourseUsersIndex" />
+    <MESSAGE value="defer with arguments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -563,30 +474,22 @@
   <component name="editorHistoryManager">
     <entry file="file:///usr/lib/python2.6/BaseHTTPServer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="328" column="0" selection-start="12030" selection-end="12030" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="328" column="0" selection-start="12030" selection-end="12030" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.PyCharm10/system/python_stubs/-1247972724/__builtin__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3596" column="8" selection-start="122853" selection-end="122853" vertical-scroll-proportion="2.428202">
-          <folding />
-        </state>
+        <state line="3596" column="8" selection-start="122853" selection-end="122853" vertical-scroll-proportion="2.428202" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../kay-1.1.1/kay/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="0" selection-start="2178" selection-end="2178" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="70" column="0" selection-start="2178" selection-end="2178" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file:///usr/lib/python2.6/SocketServer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="280" column="0" selection-start="10021" selection-end="10021" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
+        <state line="280" column="0" selection-start="10021" selection-end="10021" vertical-scroll-proportion="0.33333334" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kay/utils/forms/modelform.py">
@@ -598,23 +501,17 @@
     </entry>
     <entry file="file://$USER_HOME$/hikerlink.org/google_appengine/google/appengine/tools/dev_appserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1537" column="0" selection-start="46075" selection-end="46075" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="1537" column="0" selection-start="46075" selection-end="46075" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/hikerlink.org/google_appengine/google/appengine/ext/db/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1403" column="0" selection-start="43274" selection-end="43274" vertical-scroll-proportion="0.2829828">
-          <folding />
-        </state>
+        <state line="1403" column="0" selection-start="43274" selection-end="43274" vertical-scroll-proportion="0.2829828" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../kay-1.1.1/kay/utils/forms/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1379" column="22" selection-start="39841" selection-end="39841" vertical-scroll-proportion="1.6022944">
-          <folding />
-        </state>
+        <state line="1379" column="22" selection-start="39841" selection-end="39841" vertical-scroll-proportion="1.6022944" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../kay-1.1.1/kay/utils/forms/modelform.py">
@@ -626,9 +523,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tasteofhome/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="111" selection-start="3282" selection-end="3282" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="89" column="111" selection-start="3282" selection-end="3282" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kay/utils/forms/__init__.py">
@@ -640,9 +535,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tasteofhome/templates/tag.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="130" selection-start="1706" selection-end="1706" vertical-scroll-proportion="0.51519156">
-          <folding />
-        </state>
+        <state line="26" column="130" selection-start="1706" selection-end="1706" vertical-scroll-proportion="0.51519156" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tasteofhome/views.py">
@@ -654,21 +547,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tasteofhome/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="42" selection-start="4350" selection-end="4350" vertical-scroll-proportion="0.28665787">
-          <folding />
-        </state>
+        <state line="67" column="42" selection-start="4350" selection-end="4350" vertical-scroll-proportion="0.28665787" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tasteofhome/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="19" selection-start="1023" selection-end="1023" vertical-scroll-proportion="0.63380283">
-          <folding />
-        </state>
+        <state line="33" column="19" selection-start="1023" selection-end="1023" vertical-scroll-proportion="0.63380283" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tasteofhome/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="454" column="46" selection-start="19824" selection-end="19824" vertical-scroll-proportion="0.84635085">
+        <state line="477" column="0" selection-start="20099" selection-end="20099" vertical-scroll-proportion="9.103713">
           <folding />
         </state>
       </provider>
