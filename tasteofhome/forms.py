@@ -110,6 +110,31 @@ class DiscussionForm(ModelForm):
         memcache.set(discussion.key().__str__(), discussion)
         return discussion
 
+class DiscussionEditForm(ModelForm):
+    title=forms.TextField(required=True, min_length=3, max_length=100, label=_(u'讨论主题'))
+    content=forms.TextField(required=True, min_length=3, max_length=1000, label=_(u'内容'), widget=forms.Textarea)
+    owner=UserField(required=True, label=_(u'楼主'))
+    tag=TagField(required=True, label=_(u'分类'))
+    class Meta:
+        model = Course
+        fields = ('title', 'content', 'owner')
+
+    def save(self, commit=True, crud=CRUD.Create, **kwargs):
+        def create_discussion():
+            tag=self['tag']
+            kwargs['parent']=tag
+            discussion=super(DiscussionForm, self).save(commit, **kwargs)
+            tag.add_course(discussion)
+            return discussion
+        def update_discussion():
+            return super(DiscussionForm, self).save(commit, **kwargs)
+        if crud==CRUD.Create:
+            discussion=db.run_in_transaction(create_discussion)
+        elif crud==CRUD.Update:
+            discussion=db.run_in_transaction(update_discussion)
+        memcache.set(discussion.key().__str__(), discussion)
+        return discussion
+
 class MessageForm(ModelForm):
     in_reply_to=forms.TextField(required=True, min_length=3, max_length=100, label=_(u'讨论主题'))
     message=forms.TextField(required=True, min_length=3, max_length=1000, label=_(u'内容'), widget=forms.Textarea)

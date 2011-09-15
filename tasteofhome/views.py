@@ -27,7 +27,7 @@ from kay.auth.decorators import login_required
 
 from kay.utils import render_to_response, url_for
 from models import Tag, Course, Message, User, CourseMessagesIndex
-from forms import CourseForm, DiscussionForm, MessageForm
+from forms import CourseForm, DiscussionForm, DiscussionEditForm, MessageForm
 from google.appengine.ext import db
 from lib import recaptcha
 from kay.conf import settings
@@ -129,7 +129,7 @@ def new_discussion(request):
 @with_course
 @admin_or_owner_required
 def edit_discussion(request, course):
-  form=DiscussionForm(instance=course, initial={'owner': course.owner})
+  form=DiscussionEditForm(instance=course, initial={'owner': course.owner})
   if request.method == 'POST':
       if form.validate(request.form):
           form.save(crud=CRUD.Update)
