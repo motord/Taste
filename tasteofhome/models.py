@@ -101,10 +101,6 @@ class User(DatastoreUser):
                     raise ValueError('%s not in %s\'s hands', (self, course))
 
     def add_mouth(self, course):
-        self.add_mouth_immediate(course)
-        deferred.defer(self.add_course_mouth, course)
-
-    def add_mouth_immediate(self, course):
         userMouthsIndex=UserMouthsIndex.gql("WHERE ANCESTOR IS :1", self).get()
         if not userMouthsIndex:
             userMouthsIndex=UserMouthsIndex(parent=self)
@@ -113,6 +109,7 @@ class User(DatastoreUser):
             userMouthsIndex.mouths.append(course.key())
             userMouthsIndex.put()
             memcache.set(self.key().__str__()+'::mouths', userMouthsIndex.mouths)
+        deferred.defer(self.add_course_mouth, course)
 
     def add_course_mouth(self, course):
         tags=self.get_tags()
@@ -169,10 +166,6 @@ class User(DatastoreUser):
                     raise ValueError('%s not in %s\'s courses', (self, course))
 
     def add_hand(self, course):
-        self.add_hand_immediate(course)
-        deferred.defer(self.add_course_hand, course)
-
-    def add_hand_immediate(self, course):
         userHandsIndex=UserHandsIndex.gql("WHERE ANCESTOR IS :1", self).get()
         if not userHandsIndex:
             userHandsIndex=UserHandsIndex(parent=self)
@@ -181,6 +174,7 @@ class User(DatastoreUser):
             userHandsIndex.hands.append(course.key())
             userHandsIndex.put()
             memcache.set(self.key().__str__()+'::hands', userHandsIndex.hands)
+        deferred.defer(self.add_course_hand, course)
 
     def add_course_hand(self, course):
         tags=self.get_tags()
@@ -394,11 +388,26 @@ class Course(db.Model):
             return hands
 
     def delete(self, **kwargs):
-        messages=Message.get(CourseMessagesIndex.gql("WHERE ANCESTOR IS :1", self).get().messages)
-        db.delete([message.key() for message in messages])
-
-
-        super(Course, self).delete(**kwargs)
+        def delete_course():
+            messages=Message.get(CourseMessagesIndex.gql("WHERE ANCESTOR IS :1", self).get().messages)
+            db.delete([message.key() for message in messages])
+            tag=self.parent()
+            tag.remove_course(self)
+            courseMessagesIndex=CourseMessagesIndex.gql("WHERE ANCESTOR IS :1", self, keys_only=True)
+            courseUsersIndexes=CourseUsersIndex.gql("WHERE ANCESTOR IS :1", self, keys_only=True)
+            db.delete([courseMessagesIndex] + courseUsersIndexes)
+            super(Course, self).delete(**kwargs)
+        db.run_in_transaction(delete_course)
+        userMouthsIndexes=UserMouthsIndex.gql("WHERE mouths = :1", self)
+        for umi in userMouthsIndexes:
+            umi.n_mouths -= 1
+            umi.mouths.remove(self.key())
+            umi.put()
+        userHandsIndexes=UserHandsIndex.gql("WHERE mouths = :1", self)
+        for uhi in userHandsIndexes:
+            uhi.n_hands -= 1
+            uhi.hands.remove(self.key())
+            uhi.put()
 
     def move_to_tag(self, destination_tag):
         deferred.defer(self.move_course_to_tag, destination_tag)
@@ -415,8 +424,16 @@ class Course(db.Model):
             courseMessagesIndex.put()
             db.put([CourseUsersIndex(parent=new_course, tag=destination_tag, n_mouths=self.n_mouths, n_hands=self.n_hands, mouths=self.get_mouths(cui.tag), hands=self.get_hands(cui.tag)) for cui in CourseUsersIndex.gql("WHERE ANCESTOR IS :1", self)])
         db.run_in_transaction(clone_course)
-        self.owner.add_mouth_immediate(new_course)
-        self.owner.add_hand_immediate(new_course)
+        userMouthsIndexes=UserMouthsIndex.gql("WHERE mouths = :1", self)
+        for umi in userMouthsIndexes:
+            umi.n_mouths += 1
+            umi.mouths.append(new_course.key())
+            umi.put()
+        userHandsIndexes=UserHandsIndex.gql("WHERE mouths = :1", self)
+        for uhi in userHandsIndexes:
+            uhi.n_hands += 1
+            uhi.hands.append(new_course.key())
+            uhi.put()
         self.delete()
 
 class CourseMessagesIndex(db.Model):
@@ -464,7 +481,19 @@ class Tag(db.Model):
             courses=Tag.get(tagCoursesIndex.courses)
             memcache.set(self.key().__str__()+'::courses', courses)
             return courses
-    
+
+    def remove_course(self, course):
+        tagCoursesIndex=TagCoursesIndex.gql("WHERE ANCESTOR IS :1 AND depth = :2", self, self.depth).get()
+        if not tagCoursesIndex:
+            tagCoursesIndex=TagCoursesIndex(parent=self, depth=self.depth)
+        try:
+            tagCoursesIndex.courses.remove(course.key())
+            tagCoursesIndex.n_courses -= 1
+            tagCoursesIndex.put()
+            memcache.set(self.key().__str__()+'::courses', tagCoursesIndex.courses)
+        except (ValueError):
+            raise ValueError('%s not in tag %s', (course, self))
+
 
 class CourseUsersIndex(db.Model):
     tag=db.ReferenceProperty(Tag)
